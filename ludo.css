@@ -1,0 +1,193 @@
+*{
+    box-sizing:border-box ;
+}
+#ludo{
+    background-color: rgba(255, 255, 255, 0.74);
+    padding: 20px;
+    width: 660px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 5px grey;
+}
+table {
+    border: 2px solid rgba(0, 0, 0, 0.61);
+    border-collapse: collapse;
+}
+#red_house{
+    background-color: rgb(255, 0, 0);
+}
+#green_house{
+    background-color: green;
+}
+#blue_house{
+    background-color: blue;
+}
+#yellow_house{
+    background-color: yellow;
+}  
+.green_line{
+    background-color: green;
+}
+.red_line{
+    background-color: red;
+}
+.blue_line{
+    background-color: blue;
+}
+.yellow_line{
+    background-color: yellow;
+    
+}
+td{
+    width: 45px;
+    height: 40px;
+}
+.red_child{
+    background-color: rgb(211, 13, 13);
+}
+.green_child{
+    background-color: rgb(3, 88, 3);
+}
+.yellow_child{
+    background-color: rgb(207, 207, 3);
+}
+.blue_child{
+    background-color: rgb(6, 6, 180);
+}
+.hou_child{
+    box-shadow: 1px 1px 0px rgb(36, 33, 33);
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+}
+.first_child{
+    z-index: 2;
+    /* position: relative;
+    top: 0px;
+    left: 0px; */
+}
+.second_child{
+    /* position: relative;
+    top: -35px;
+    left: 80%; */
+    z-index: 4;
+}
+.third_child{
+    /* position: relative;
+    top: 40px;
+    left: 0%; */
+    z-index: 6;
+}
+.forth_child{
+    /* position: relative;
+    top: 5px;
+    left: 80%; */
+    z-index: 7;
+}
+#select , #choose , #selectTwo {
+    background-color:white;
+    box-shadow: 2px 2px 5px black;
+    position: relative;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    z-index: 2;
+    display: none;
+}
+
+#select{
+    height: 240px;
+    display: none;
+    top: -450px;
+}
+#choose , #selectTwo{
+    height: 170px;
+    top: -425px;
+}
+#selectTwo{
+    display: none;
+}
+.sele{
+    height: 40px;
+}
+.sele_col, .sele_col2{
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size: 20px;
+}
+.sele_col:hover{
+    padding-top: 5px;
+    color: grey;
+    width: 480px;
+    box-shadow: 0px 0px 2px rgba(128, 128, 128, 0.801);
+    border-radius: 10px;
+    transform: translate(3px, 3px);
+}
+#posi , #choo ,#choo2{
+    font-size: 22px;
+    font-weight: 600;
+    padding: 10px 0 0 10px;
+}
+#nxt , #next , #nex{
+    position: absolute;
+    left: 80%;
+    bottom: 5%;
+    display: none;
+    padding: 6px 0px 6px 17px ;
+    width: 80px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 10px;
+    background-color: rgba(5, 95, 107, 0.644);
+   
+}
+#roll{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.349);
+    height: 200px;
+    position: relative;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    top: -450px;
+    padding-top: 80px;
+}
+.roll{
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 50px;
+    border-radius: 8px;
+}
+#dice{
+    background-color: brown;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgba(240, 227, 211, 0.849);
+    padding: 10px 0 0 60px;
+    display: none;
+}
+#dice:hover{
+    background-color: rgb(124, 32, 32);
+    transform: translate(-4px,4px);
+
+}
+#diceDisp{
+    display: none;
+    top: -30px;
+    position: relative;
+    background-color: white;
+    background-image: linear-gradient(to right,rgba(4, 4, 139, 0.603),rgba(226, 226, 4, 0.616));
+    height: 100px;
+    color: rgb(197, 197, 197);
+    font-size: 60px;
+    padding: 3px 0 0 45px;
+    letter-spacing: 15px;
+}
+.spec{
+    box-shadow: 3px 3px 6px rgb(39, 6, 12);
+    /* background-color: rgba(0, 0, 0, 0.377); */
+}

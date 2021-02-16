@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ludo prototype</title>
+	<link rel="stylesheet" href="ludo.css">
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+	<div id="ludo">
+		<table border="2">
+			<tbody>
+				<tr>
+					<!--1-->
+					<td class="house" id="red_house" rowspan="6" colspan="6">
+						<div id="rfirst_child" class="hou_child red_child first_child" ></div>
+						<div id="rsecond_child" class="hou_child red_child second_child"></div>
+						<div id="rthird_child" class="hou_child red_child third_child"></div>
+						<div id="rforth_child" class="hou_child red_child forth_child"></div>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="house" id="green_house" rowspan="6" colspan="6">
+						<div id="gfirst_child" class="hou_child green_child first_child" ></div>
+						<div id="gsecond_child" class="hou_child green_child second_child"></div>
+						<div id="gthird_child" class="hou_child green_child third_child"></div>
+						<div id="gforth_child" class="hou_child green_child forth_child"></div>
+					</td>
+
+				</tr>
+				<tr>
+					<!--2-->
+					<td></td>
+					<td class="green_line"></td>
+					<td class="green_line"></td>
+
+				</tr>
+				<tr>
+					<!--3-->
+					<td></td>
+					<td class="green_line"></td>
+					<td></td>
+
+				</tr>
+				<tr>
+					<!--4-->
+					<td ></td>
+					<td class="green_line"></td>
+					<td ></td>
+
+
+				</tr>
+				<tr>
+					<!--5-->
+					<td></td>
+					<td class="green_line"></td>
+					<td></td>
+
+
+				</tr>
+				<tr>
+					<!--6-->
+					<td  id="five" ></td>
+					<td class="green_line"></td>
+					<td></td>
+
+
+				</tr>
+				<!--1-->
+				<tr>
+					<td></td>
+					<td class="red_line" id="rdrop" data-box></td>
+					<td id="one" ></td>
+					<td id="two"  ></td>
+					<td id="three" ></td>
+					<td id="four" ></td>
+					<td rowspan="3" colspan="3"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<!--2-->
+					<td></td>
+					<td class="red_line"></td>
+					<td class="red_line"></td>
+					<td class="red_line"></td>
+					<td class="red_line"></td>
+					<td class="red_line"></td>
+					<td class="blue_line"></td>
+					<td class="blue_line"></td>
+					<td class="blue_line"></td>
+					<td class="blue_line"></td>
+					<td class="blue_line"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<!--3-->
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="blue_line"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<!--1-->
+					<td class="house" id="yellow_house" colspan="6" rowspan="6">
+						<div id="yfirst_child" class="hou_child yellow_child first_child" ></div>
+						<div id="ysecond_child" class="hou_child yellow_child second_child"></div>
+						<div id="ythird_child" class="hou_child yellow_child third_child"></div>
+						<div id="yforth_child" class="hou_child yellow_child forth_child"></div>
+					</td>
+					<td></td>
+					<td class="yellow_line"></td>
+					<td></td>
+					<td class="house" id="blue_house" rowspan="6" colspan="6">
+						<div id="bfirst_child" class="hou_child blue_child first_child" ></div>
+						<div id="bsecond_child" class="hou_child blue_child second_child"></div>
+						<div id="bthird_child" class="hou_child blue_child third_child"></div>
+						<div id="bforth_child" class="hou_child blue_child forth_child"></div>
+					</td>
+
+
+				</tr>
+				<tr>
+					<!--2-->
+					<td></td>
+					<td class="yellow_line"></td>
+					<td></td>
+
+
+				</tr>
+				<tr>
+					<!--3-->
+					<td></td>
+					<td class="yellow_line"></td>
+					<td></td>
+
+
+				</tr>
+				<tr>
+					<!--4-->
+					<td></td>
+					<td class="yellow_line"></td>
+					<td></td>
+
+				</tr>
+				<tr>
+					<!--5-->
+					<td class="yellow_line"></td>
+					<td class="yellow_line"></td>
+					<td></td>
+
+				</tr>
+				<tr>
+					<!--6-->
+					<td></td>
+					<td></td>
+					<td></td>
+
+
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+	<div id="select">
+		<div class="sele" id="posi"></div>
+		<div class="sele sele_col" id="red">Red</div>
+		<div class="sele sele_col" id="green">Green</div>
+		<div class="sele sele_col" id="yellow">Yellow</div>
+		<div class="sele sele_col" id="blue">Blue</div>
+		<div class="sele" id="nxt"></div>
+	</div>
+	<div id="choose">
+		<div class="sele" id="choo" >Select number of players</div>
+		<form action="">
+		<div class="sele sele_col2">
+			<span><input type="checkbox" id="checktwo" onclick="ct()"> 2 Players</span>
+		</div>
+		<div class="sele sele_col2">
+			<span><input type="checkbox" id="checkfour" onclick="cf()"> 4 Players</span>
+		</div>
+		</form>
+		<div style="display: block;"  id="next"> Next</div>
+		
+	</div>
+	<div id="selectTwo">
+		<div class="sele" id="choo2" ></div>
+		<form action="">
+		<div class="sele sele_col2">
+			<span><input type="checkbox" id="checkrg" onclick="rg()"> Red and Green </span>
+		</div>
+		<div class="sele sele_col2">
+			<span><input type="checkbox" id="checkby" onclick="by()"> Blue and Yellow </span>
+		</div>
+		</form>
+		<div id="nex" onclick="secondPlay()">Next</div>
+		
+	</div>
+	<div id="roll">
+		<div id="dice" class="roll" onclick="rollD()">Roll dice</div>
+		<div id="diceDisp" class="roll"></div>
+	</div>
+
+	<script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/jquery.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="ludo.js"></script>
+</body>
+
+</html>
