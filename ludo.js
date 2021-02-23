@@ -227,52 +227,35 @@ function loopPlayer() {
     none()
     var glg = JSON.parse(localStorage.getItem('img'))
     rea = glg.indexOf(226)
-    // console.log(rea);
-    // console.log(glg);
-    // var a = randiceA()
+
     // a = 6
     // var b = randiceB()
     var chil = hose.children.length
     var child = hoge.children.length
     if (rea >= 0) {
-        // specRed()
         if (a == 6 || b == 6) {
-            console.log(a);
-            console.log(b);
             sixgame()
             specRed()
         }
-
         if ((a == 6 || b == 6) && (chil == 4 && child == 4)) {
-            console.log(a);
-            console.log(b);
+
             sixgame()
             specRed()
-            console.log('worked');
         } else if ((chil == 4 && child == 4) && (a < 6 || b < 6)) {
-            console.log(a);
-            console.log(b);
+
             console.log('roll again')
             startGame()
         } else if (chil < 4 || child < 4) {
             if (a < 6 && b < 6) {
-                console.log("less");
-                if (chil + child == 7) {
-                    seven()
-                } else if (chil + child <= 6) {
-                    console.log('more');
-                    seven()
-                }
-                // setTimeout(() => {
-                //     startGame()
-                // }, 1500);
+                console.log('less');
+                add2()
+
             }
         }
 
 
     } else {
         startGame()
-        // specGreen()
     }
 
 }
@@ -285,11 +268,10 @@ function specRed() {
 function specRedR() {
     for (let i = 0; i < ree.length; i++) {
         ree[i].classList.remove('spec')
-        // ree[i].classList.remove('')
         geen[i].classList.remove('spec')
     }
 }
-function specGreen() {
+function specYellow() {
     for (let i = 0; i < yell.length; i++) {
         yell[i].classList.add('spec')
         bue[i].classList.add('spec')
@@ -297,6 +279,15 @@ function specGreen() {
 }
 function sixgame() {
     add()
+}
+function add2() {
+    var chil = document.getElementsByClassName('sing')
+    // var child = hoge.children
+    for (let s = 0; s < chil.length; s++) {
+        hov = chil[s].addEventListener('click', movement)
+    }
+
+
 }
 function add() {
     var chil = hose.children
@@ -322,78 +313,147 @@ function reMove() {
 }
 let gud
 let gud1
+let letter
+function currentPosition() {
+    if (letter == 'r') {
+        return 0
+    } else if (letter == 'g') {
+        return 13
+    } else {
+        return
+    }
+}
+function firstMove(position) {
+    if (position == '') {
+        return currentPosition()
+    } else {
+        console.log(position);
+        return position
+    }
+}
+let realMove
+function movement(event) {
+    gud = event.target.id;
+    console.log(gud);
 
-function movement(lala) {
-    gud = lala.target.id;
+    letter = gud.slice(0, 1)
+    gud1 = event.target.classList;
 
-    gud1 = lala.target.classList;
-
-    specRedR()
     reMove()
+    specRedR()
 
-    lala.currentTarget.remove()
-    var gud2 = lala.target.classList;
+    if (currentPosition() == 0 || currentPosition() == 13) {
+        position = ''
+    } else if (currentPosition() == undefined) {
+        position = event.target.parentElement.dataset.place
 
-    setTimeout(() => {
-        let lost
-        if (a == 6) {
-            var x = b
-            if (x == 1) {
-                lost = document.getElementById('one')
-            } else if (x == 2) {
-                lost = document.getElementById('two')
-            } else if (x == 3) {
-                lost = document.getElementById('three')
-            } else if (x == 4) {
-                lost = document.getElementById('four')
-            } else if (x == 5) {
-                lost = document.getElementById('five')
-            }
-        } else {
-            var x = a
-            if (x == 1) {
-                lost = document.getElementById('one')
-            } else if (x == 2) {
-                lost = document.getElementById('two')
-            } else if (x == 3) {
-                lost = document.getElementById('three')
-            } else if (x == 4) {
-                lost = document.getElementById('four')
-            } else if (x == 5) {
-                lost = document.getElementById('five')
-            }
+    }
+
+
+    // console.log(currentPosition());
+
+    if (letter == 'r') {
+        event.currentTarget.remove()
+        realMove = firstMove(position)
+
+        var gud2 = event.target.classList;
+
+        if (realMove == 0) {
+            mainMove(realMove, gud2)
+
         }
-        rdrop.innerHTML += `<div class = "${gud2}"></div>`
-        setTimeout(() => {
-            rdrop.innerHTML = ' ';
-            lost.innerHTML += `<div class = "oside ${gud2} "></div>`
-            // lala.target.classList.add('oside')
-        }, 1000);
 
-        setTimeout(() => {
-            startGame()
-        }, 1000);
+    } else if (letter == 'g') {
+        event.currentTarget.remove()
+        realMove = firstMove(position)
 
-    }, 500);
+        var gud2 = event.target.classList;
+
+        if (realMove == 13) {
+            mainMove(realMove, gud2)
+        }
+    } else {
+        var gud2 = event.target.classList;
+
+        console.log('chiiii');
+        realMove = position
+        mainMove2(realMove, gud2)
+
+    }
 
 }
 
+function stop(move) {
+    clearInterval(move)
+    setTimeout(() => {
+        startGame()
+    }, 1000);
+}
+
+function mainMove(realMove, gud2) {
+    console.log(realMove);
+    seed = `<div class="${gud2} sing" style = "position: absolute; " ></div>`
+    $(`[data-place=${realMove}]`).append(seed)
+    bb = b + realMove
+    aa = a + realMove
+    var move = setInterval(() => {
+        main = $(`[data-place=${realMove}] div`).last().detach()
+
+        realMove++
+        $(`[data-place=${realMove}]`).append(seed)
+        if (a == 6) {
+
+            if (realMove == bb) {
+                stop(move)
+            }
+        } else {
+            if (realMove == aa) {
+                stop(move)
+            }
+        }
+
+    }, 1000);
+
+
+}
+
+
+function mainMove2(realMove, gud2) {
+    realMove = parseInt(realMove)
+    a = parseInt(a)
+    b = parseInt(b);
+    seed = `<div class="${gud2} sing" style = "position: absolute; " ></div>`
+    bb = (b + a) + realMove
+    
+    var move = setInterval(() => {
+        main = $(`[data-place=${realMove}] div`).last().detach()
+        realMove++
+        console.log(realMove);
+        $(`[data-place=${realMove}]`).append(main)
+        if (realMove == bb) {
+            stop(move)
+        }
+    }, 1000);
+}
+
+
+
+
+
 function seven() {
-    // document.getElementsByClassName('oside').innerHTML = 'kkkkk'
     for (let i = 0; i < out.length; i++) {
         out[i].addEventListener('click', moreMove)
         out[i].classList.add('spec')
     }
 }
-
+let position
+let movedPosition
 function moreMove(event) {
     console.log(event);
-//    var ind = event.target.parentElement
-//   var dex =  $(td).index()
-//   console.log(ind);
-//   console.log(dex);
-    var element = $(`td:eq(15) div`).detach();
-    $('td:eq(1)').append(element);
-    console.log('kkkk');
+
+    position = event.target.parentElement.dataset.place
+    console.log(ind);
+    var element = $(`td:eq(${ind}) div`).detach();
+    $('td:eq(30)').append(element);
+
 }
-//   console.log(td.length)

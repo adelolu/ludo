@@ -187,7 +187,11 @@ td{
     padding: 3px 0 0 45px;
     letter-spacing: 15px;
 }
-.spec{
+.cell-box{
+    width: inherit;
+    height: inherit;
+}
+.spec, .single{
     box-shadow: 3px 3px 6px rgb(39, 6, 12);
     /* background-color: rgba(0, 0, 0, 0.377); */
 }
