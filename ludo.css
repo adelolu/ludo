@@ -94,7 +94,7 @@ td{
     margin-right: auto;
     width: 500px;
     z-index: 2;
-    display: none;
+    /* display: none; */
 }
 
 #select{
