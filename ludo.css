@@ -188,8 +188,8 @@ td{
     letter-spacing: 15px;
 }
 .cell-box{
-    width: inherit;
-    height: inherit;
+    width: calc(inherit - 5) ;
+    height: 35px;
 }
 .spec, .single{
     box-shadow: 3px 3px 6px rgb(39, 6, 12);

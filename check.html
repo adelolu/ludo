@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container card mt-5 shadow p-5 text-white">
+        <table class="table border ">
+            <tr>
+                <td class="border box bg-primary">
+                    <span>Ayodeji</span>
+                    <!-- <div id="box-1" class="box"></div> -->
+                </td>
+                <td class="border box bg-primary">
+                    <span>Ayodeji</span>
+                    <!-- <div id="box-2" class="box"></div> -->
+                </td>
+                <td class="border box bg-primary">
+                    <span>Ayodeji</span>
+                    <!-- <div id="box-3" class="box"></div> -->
+                </td>
+                <td class="border box bg-primary">
+                    <span>Ayodeji</span>
+                    <!-- <div id="box-4" class="box"></div> -->
+                </td>
+            </tr>
+            <tr>
+                <td class="border box bg-primary">
+                    <span>Ayodeji</span>
+                    <!-- <div id="box-5" class="box"></div> -->
+                </td>
+                <td class="border box bg-primary">
+                    <span>Ayodeji</span>
+                    <!-- <div id="box-6" class="box"></div> -->
+                </td>
+                <td class="border box bg-primary">
+                    <span>Ayodeji</span>
+                    <!-- <div id="box-7" class="box"></div> -->
+                </td>
+                <td class="border box bg-primary">
+                    <span>Ayodeji</span>
+                    <!-- <div id="box-" class="box bg-primary">helll</div> -->
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var target = prompt();
+        console.log(target)
+        var mem = document.querySelectorAll('.box');
+        var i = 0;
+        function myTime() { setTimeout(setit, 2000) };
+        function setit() {
+            if (i>0 && i < target) { mem[i - 1].innerHTML = '<span>Ayodeji</span>' };
+            if (i <= target - 1) {
+                mem[i].innerHTML = "<span style = 'background-color : red;'> Ayodeji</span>";
+                // console.log(i);
+                // mem[i].style.background = 'red';
+                i++;
+                myTime();
+            }
+
+        }
+        myTime();
+        
+    </script>
+</body>
+
+</html>

@@ -9,19 +9,20 @@ let sby = document.getElementById('checkby')
 let dice = document.getElementById('dice')
 let disp = document.getElementById('diceDisp')
 let roll = document.getElementById('roll')
-let ree = document.getElementsByClassName('red_child')
-let geen = document.getElementsByClassName('green_child')
-let yell = document.getElementsByClassName('yellow_child')
-let bue = document.getElementsByClassName('blue_child')
+
 let out = document.getElementsByClassName('oside')
 let hose = document.getElementById('red_house')
 let hoge = document.getElementById('green_house')
+let hoye = document.getElementById('yellow_house')
+let hobl = document.getElementById('blue_house')
 let lgr = 'linear-gradient(to right, rgba(255, 0, 0, 0.644)  , rgba(4, 170, 4, 0.589))'
 let lgy = 'linear-gradient(to right,rgba(4, 4, 139, 0.603),rgba(226, 226, 4, 0.616))'
 let a
 let b
+let da = 0
+let db = 0
 let move
-let rdrop = document.getElementById('rdrop')
+// let rdrop = document.getElementById('rdrop')
 
 
 
@@ -188,8 +189,8 @@ setTimeout(() => {
 function ludoTwo() {
     block()
     diceDisp.style.display = 'none'
-
 }
+
 function img() {
     //  var lg  = localStorage.setItem('img',JSON.stringify(lgr))
     var glg = JSON.parse(localStorage.getItem('img'))
@@ -203,11 +204,11 @@ function img() {
         var glg = JSON.parse(localStorage.getItem('img'))
     }
 }
+
+// rollD() displays the number of the rolled dice.
 function rollD() {
     a = randiceA()
     b = randiceB()
-    console.log(a);
-    console.log(b);
     dice.style.display = 'none';
     diceDisp.style.display = 'block'
     img()
@@ -217,63 +218,164 @@ function rollD() {
     }, 1500);
 
 }
+// randiceA() generates the first random number.
 function randiceA() {
     return Math.ceil(Math.random() * 6)
 }
+
+// randiceB() generates the second random number.
 function randiceB() {
     return Math.ceil(Math.random() * 6)
 }
+let outRed = []
+let outGreen = []
+let outYellow = []
+let outBlue = []
 function loopPlayer() {
     none()
     var glg = JSON.parse(localStorage.getItem('img'))
     rea = glg.indexOf(226)
 
     // a = 6
-    // var b = randiceB()
+
     var chil = hose.children.length
     var child = hoge.children.length
+    var chil1 = hoye.children.length
+    var child1= hobl.children.length
     if (rea >= 0) {
-        if (a == 6 || b == 6) {
+        if (((a == 6 || b == 6) && (chil == 4 && child == 4)) || ((outGreen > 0 || outRed > 0) && (a == 6 || b == 6))) {
+            console.log('after tree');
             sixgame()
             specRed()
-        }
-        if ((a == 6 || b == 6) && (chil == 4 && child == 4)) {
+            specGreen()
 
-            sixgame()
-            specRed()
-        } else if ((chil == 4 && child == 4) && (a < 6 || b < 6)) {
-
+        } else if (((chil <= 4 || child <= 4) && (a < 6 && b < 6)) && (outGreen == 0 && outRed == 0)) {
             console.log('roll again')
             startGame()
-        } else if (chil < 4 || child < 4) {
-            if (a < 6 && b < 6) {
-                console.log('less');
-                add2()
 
+        } else if (chil < 4 || child < 4) {
+            console.log('less');
+            if (a == 6 || b == 6) {
+                console.log(outGreen);
+                console.log(outRed);
+                if (outGreen.length > 0 || outRed.length > 0) {
+                    add2()
+                    specOut()
+                    console.log('mama');
+                }
+                sixgame()
+                specRed()
+                specGreen()
+                console.log('mine');
+
+                console.log('twoooo');
+            } else if ((a <= 6 || b <= 6) || (outGreen > 0 || outRed > 0)) {
+                add2()
+                specOut()
+                console.log('me agin');
+            } else {
+                console.log('smth is really wrong');
             }
+        } else {
+            console.log('smth wrong');
         }
 
 
     } else {
-        startGame()
+        if (((a == 6 || b == 6) && (chil1 == 4 && child1 == 4)) || ((outYellow > 0 || outBlue > 0) && (a == 6 || b == 6))) {
+            console.log('after tree');
+            sixgame()
+            specYellow()
+            specBlue()
+
+        } else if (((chil1 <= 4 || child1 <= 4) && (a < 6 && b < 6)) && (outYellow == 0 && outBlue == 0)) {
+            console.log('roll again')
+            startGame()
+
+        } else if (chil1 < 4 || child1 < 4) {
+            console.log('less');
+            if (a == 6 || b == 6) {
+                if (outYellow.length > 0 || outBlue.length > 0) {
+                    add2()
+                    specOut()
+                    console.log('mama');
+                }
+                sixgame()
+                specYellow()
+                specBlue()
+                console.log('mine');
+
+                console.log('twoooo');
+            } else if ((a <= 6 || b <= 6) || (outYellow > 0 || outRed > 0)) {
+                add2()
+                specOut()
+                console.log('me agin');
+            } else {
+                console.log('smth is really wrong');
+            }
+        } else {
+            console.log('smth wrong');
+        }
     }
 
 }
 function specRed() {
+    let ree = document.getElementsByClassName('red_child')
     for (let i = 0; i < ree.length; i++) {
         ree[i].classList.add('spec')
+    }
+}
+function specOut() {
+    let ree = document.getElementsByClassName('sing')
+    for (let i = 0; i < ree.length; i++) {
+        ree[i].classList.add('single')
+    }
+}
+function specGreen() {
+    let geen = document.getElementsByClassName('green_child')
+    for (let i = 0; i < geen.length; i++) {
         geen[i].classList.add('spec')
     }
 }
 function specRedR() {
+    let ree = document.getElementsByClassName('red_child')
     for (let i = 0; i < ree.length; i++) {
         ree[i].classList.remove('spec')
+    }
+}
+function specOutR() {
+    let ree = document.getElementsByClassName('sing')
+    for (let i = 0; i < ree.length; i++) {
+        ree[i].classList.remove('single')
+    }
+}
+function specGreenR() {
+    let geen = document.getElementsByClassName('green_child')
+    for (let i = 0; i < geen.length; i++) {
         geen[i].classList.remove('spec')
     }
 }
+function specBlueR() {
+    let bue = document.getElementsByClassName('blue_child')
+    for (let i = 0; i < bue.length; i++) {
+        bue[i].classList.remove('spec')
+    }
+}
 function specYellow() {
+    let yell = document.getElementsByClassName('yellow_child')
     for (let i = 0; i < yell.length; i++) {
         yell[i].classList.add('spec')
+    }
+}
+function specYellowR() {
+    let yell = document.getElementsByClassName('yellow_child')
+    for (let i = 0; i < yell.length; i++) {
+        yell[i].classList.remove('spec')
+    }
+}
+function specBlue() {
+    let bue = document.getElementsByClassName('blue_child')
+    for (let i = 0; i < bue.length; i++) {
         bue[i].classList.add('spec')
     }
 }
@@ -281,7 +383,7 @@ function sixgame() {
     add()
 }
 function add2() {
-    var chil = document.getElementsByClassName('sing')
+    var chil1 = document.getElementsByClassName('sing')
     // var child = hoge.children
     for (let s = 0; s < chil.length; s++) {
         hov = chil[s].addEventListener('click', movement)
@@ -319,6 +421,10 @@ function currentPosition() {
         return 0
     } else if (letter == 'g') {
         return 13
+    } else if (letter == 'y') {
+        return 40
+    } else if (letter == 'b') {
+        return 26
     } else {
         return
     }
@@ -335,22 +441,21 @@ let realMove
 function movement(event) {
     gud = event.target.id;
     console.log(gud);
-
     letter = gud.slice(0, 1)
     gud1 = event.target.classList;
-
     reMove()
     specRedR()
+    specOutR()
+    specGreenR()
 
     if (currentPosition() == 0 || currentPosition() == 13) {
         position = ''
     } else if (currentPosition() == undefined) {
         position = event.target.parentElement.dataset.place
 
+    } else if (currentPosition() == 40 || currentPosition() == 26) {
+        return
     }
-
-
-    // console.log(currentPosition());
 
     if (letter == 'r') {
         event.currentTarget.remove()
@@ -360,7 +465,8 @@ function movement(event) {
 
         if (realMove == 0) {
             mainMove(realMove, gud2)
-
+            outRed.push(event.target.id)
+            console.log(outRed);
         }
 
     } else if (letter == 'g') {
@@ -368,17 +474,16 @@ function movement(event) {
         realMove = firstMove(position)
 
         var gud2 = event.target.classList;
+        outGreen.push(event.target.id)
+        console.log(outGreen);
 
         if (realMove == 13) {
             mainMove(realMove, gud2)
         }
     } else {
         var gud2 = event.target.classList;
-
-        console.log('chiiii');
         realMove = position
         mainMove2(realMove, gud2)
-
     }
 
 }
@@ -391,20 +496,32 @@ function stop(move) {
 }
 
 function mainMove(realMove, gud2) {
-    console.log(realMove);
     seed = `<div class="${gud2} sing" style = "position: absolute; " ></div>`
     $(`[data-place=${realMove}]`).append(seed)
     bb = b + realMove
     aa = a + realMove
     var move = setInterval(() => {
         main = $(`[data-place=${realMove}] div`).last().detach()
-
         realMove++
         $(`[data-place=${realMove}]`).append(seed)
         if (a == 6) {
 
             if (realMove == bb) {
                 stop(move)
+            }
+        } else if (a != 6 && b != 6 && (da == 6 && db == 6)) {
+            if (realMove == (6 + aa + b)) {
+                stop(move)
+            }
+        } else if (a == 6 || b == 6 && (da == 6 && db == 6)) {
+            if (a == 6) {
+                if (realMove == (6 + 6 + bb)) {
+                    stop(move)
+                }
+            } else {
+                if (realMove == (6 + 6 + aa)) {
+                    stop(move)
+                }
             }
         } else {
             if (realMove == aa) {
@@ -422,38 +539,102 @@ function mainMove2(realMove, gud2) {
     realMove = parseInt(realMove)
     a = parseInt(a)
     b = parseInt(b);
-    seed = `<div class="${gud2} sing" style = "position: absolute; " ></div>`
-    bb = (b + a) + realMove
-    
+    da = parseInt(da);
+    db = parseInt(db);
+    seed = `<div class="${gud2} sing" style = "position: absolute; " ></div>`;
+    bb = (b + a) + realMove + da + db
+
+
+    // console.log(bb);
+    // console.log(gud2[1]);
     var move = setInterval(() => {
         main = $(`[data-place=${realMove}] div`).last().detach()
+        if (realMove >= 51 && realMove < 100) {
+            bb = bb - 52
+            realMove = -1
+        }
+
         realMove++
-        console.log(realMove);
+        if (gud2[1] == 'red_child' && realMove == 51) {
+            console.log('house');
+            realMove = 101
+
+        } else if (gud2[1] == 'green_child' && realMove == 12) {
+            realMove = 111
+            bb = (bb - 12) + realMove
+            console.log(bb);
+
+        }
+        if (realMove == 116 || realMove == 106) {
+            console.log('stop');
+            if (realMove == 116) {
+                outGreen.splice(0, 1)
+            } else {
+                outRed.splice(0, 1)
+
+            }
+            $(`[data-place=${realMove}] div`).last().detach()
+            stop(move)
+            setTimeout(() => {
+                startGame()
+            }, 1000);
+        }
         $(`[data-place=${realMove}]`).append(main)
+
         if (realMove == bb) {
             stop(move)
         }
+
     }, 1000);
 }
 
 
-
-
-
-function seven() {
-    for (let i = 0; i < out.length; i++) {
-        out[i].addEventListener('click', moreMove)
-        out[i].classList.add('spec')
-    }
-}
 let position
 let movedPosition
 function moreMove(event) {
-    console.log(event);
+    gud = event.target.id;
+    console.log(gud);
+    letter = gud.slice(0, 1)
+    gud1 = event.target.classList;
+    reMove()
+    specOutR()
+    specBlueR()
+    specYellowR()
 
-    position = event.target.parentElement.dataset.place
-    console.log(ind);
-    var element = $(`td:eq(${ind}) div`).detach();
-    $('td:eq(30)').append(element);
+    if (currentPosition() == 26 || currentPosition() == 40) {
+        position = ''
+    } else if (currentPosition() == undefined) {
+        position = event.target.parentElement.dataset.place
+
+    }else if (currentPosition() == 0 || currentPosition() == 13) {
+        
+    }
+
+    if (letter == 'y') {
+        event.currentTarget.remove()
+        realMove = firstMove(position)
+
+        var gud2 = event.target.classList;
+
+        if (realMove == 40) {
+            mainMove(realMove, gud2)
+            outYellow.push(event.target.id)
+        }
+
+    } else if (letter == 'b') {
+        event.currentTarget.remove()
+        realMove = firstMove(position)
+
+        var gud2 = event.target.classList;
+        outBlue.push(event.target.id)
+
+        if (realMove == 26) {
+            mainMove(realMove, gud2)
+        }
+    } else {
+        var gud2 = event.target.classList;
+        realMove = position
+        mainMove2(realMove, gud2)
+    }
 
 }
