@@ -1,22 +1,21 @@
-var play = 'first'
-var col = ''
+let play = 'first';
+let col = ''
 // let aaa = ''
-let player = []
-let two = document.getElementById('checktwo')
-let four = document.getElementById('checkfour')
-let frg = document.getElementById('checkrg')
-let sby = document.getElementById('checkby')
-let dice = document.getElementById('dice')
-let disp = document.getElementById('diceDisp')
-let roll = document.getElementById('roll')
-
-let out = document.getElementsByClassName('oside')
-let hose = document.getElementById('red_house')
-let hoge = document.getElementById('green_house')
-let hoye = document.getElementById('yellow_house')
-let hobl = document.getElementById('blue_house')
-let lgr = 'linear-gradient(to right, rgba(255, 0, 0, 0.644)  , rgba(4, 170, 4, 0.589))'
-let lgy = 'linear-gradient(to right,rgba(4, 4, 139, 0.603),rgba(226, 226, 4, 0.616))'
+let player = ['b', 'g'];
+let two = document.getElementById('checktwo');
+let four = document.getElementById('checkfour');
+let frg = document.getElementById('checkrg');
+let sby = document.getElementById('checkby');
+let dice = document.getElementById('dice');
+let disp = document.getElementById('diceDisp');
+let roll = document.getElementById('roll');
+// let out = document.getElementsByClassName('oside');
+let hose = document.getElementById('red_house');
+let hoge = document.getElementById('green_house');
+let hoye = document.getElementById('yellow_house');
+let hobl = document.getElementById('blue_house');
+let lgr = 'linear-gradient(to right, rgba(255, 0, 0, 0.644)  , rgba(4, 170, 4, 0.589))';
+let lgy = 'linear-gradient(to right,rgba(4, 4, 139, 0.603),rgba(226, 226, 4, 0.616))';
 let a
 let b
 let da = 0
@@ -26,8 +25,8 @@ let move
 
 
 
-document.getElementById('ludo').style.backgroundColor = 'rgba(0,0,0,0.2)'
-document.getElementById('ludo').style.opacity = 0.3;
+// document.getElementById('ludo').style.backgroundColor = 'rgba(0,0,0,0.2)'
+// document.getElementById('ludo').style.opacity = 0.3;
 $("#posi").text(`Choose your ${play} player : ${col}`)
 $('.sele_col').on('click', temi)
 $('#nxt').on('click', tomi)
@@ -181,9 +180,9 @@ function startGame() {
         }
     }, 1000);
 }
-// setTimeout(() => {
-//     startGame()
-// }, 1000);
+setTimeout(() => {
+    startGame()
+}, 1000);
 function ludoTwo() {
     block()
     diceDisp.style.display = 'none'
@@ -213,7 +212,7 @@ function rollD() {
     diceDisp.innerText = `${a}:${b}`
     setTimeout(() => {
         loopPlayer()
-    }, 1500);
+    }, 1000);
 
 }
 // randiceA() generates the first random number.
@@ -243,8 +242,6 @@ function red() {
 
     } else if (chil < 4 || child < 4) {
         if (a == 6 || b == 6) {
-            console.log(outGreen);
-            console.log(outRed);
             if (outGreen.length > 0 || outRed.length > 0) {
                 add2()
                 specOut()
@@ -271,6 +268,7 @@ function loopPlayer() {
     }
 
 }
+
 function yellow() {
     var chil1 = hoye.children.length
     var child1 = hobl.children.length
@@ -280,32 +278,31 @@ function yellow() {
         specBlue()
 
     } else if (((chil1 <= 4 || child1 <= 4) && (a < 6 && b < 6)) && (outYellow == 0 && outBlue == 0)) {
-        console.log('roll again')
         startGame()
 
     } else if (chil1 < 4 || child1 < 4) {
         if (a == 6 || b == 6) {
             if (outYellow.length > 0 || outBlue.length > 0) {
                 add4()
-                specOut()
+                specOut2()
             }
             fivegame()
             specYellow()
             specBlue()
         } else if ((a <= 6 || b <= 6) || (outYellow > 0 || outRed > 0)) {
             add4()
-            specOut()
+            specOut2()
         }
     }
 }
-// adds class name the moveble seed of house red
+// adds class name to the moveable seed of house red
 function specRed() {
     let ree = document.getElementsByClassName('red_child')
     for (let i = 0; i < ree.length; i++) {
         ree[i].classList.add('spec')
     }
 }
-// adds class name the moveble seed of house green
+// adds class name to the moveble seed of house green
 function specGreen() {
     let geen = document.getElementsByClassName('green_child')
     for (let i = 0; i < geen.length; i++) {
@@ -330,19 +327,28 @@ function specGreenR() {
 function specOut() {
     let ree = document.getElementsByClassName('sing')
     for (let i = 0; i < ree.length; i++) {
-        ree[i].classList.add('single')
+        ree[i].classList.add('spec')
     }
 }
+
 function specOutR() {
     let ree = document.getElementsByClassName('sing')
     for (let i = 0; i < ree.length; i++) {
-        ree[i].classList.remove('single')
+        ree[i].classList.remove('spec')
     }
 }
-function specBlueR() {
-    let bue = document.getElementsByClassName('blue_child')
-    for (let i = 0; i < bue.length; i++) {
-        bue[i].classList.remove('spec')
+
+function specOut2() {
+    let ree = document.getElementsByClassName('deal')
+    for (let i = 0; i < ree.length; i++) {
+        ree[i].classList.add('spec')
+    }
+}
+
+function specOutR2() {
+    let ree = document.getElementsByClassName('deal')
+    for (let i = 0; i < ree.length; i++) {
+        ree[i].classList.remove('spec')
     }
 }
 // adds class name the moveble seed of house yellow
@@ -367,27 +373,24 @@ function specBlue() {
     }
 }
 
+function specBlueR() {
+    let bue = document.getElementsByClassName('blue_child')
+    for (let i = 0; i < bue.length; i++) {
+        bue[i].classList.remove('spec')
+    }
+}
+
 function sixgame() {
     add()
 }
+
 function fivegame() {
     add3()
 }
-function add2() {
-    var chil = document.getElementsByClassName('sing')
-    for (let s = 0; s < chil.length; s++) {
-        hov = chil[s].addEventListener('click', movement)
-    }
-}
-function add4() {
-    var chil1 = document.getElementsByClassName('sing')
-    for (let s = 0; s < chil.length; s++) {
-        hov = chil1[s].addEventListener('click', moreMove)
-    }
-}
+// add() adds eventlistener to the all of seeds of green and red that are in the house 
 function add() {
-    var chil = hose.children
-    var child = hoge.children
+    let chil = hose.children
+    let child = hoge.children
     for (let s = 0; s < chil.length; s++) {
         hov = chil[s].addEventListener('click', movement)
     }
@@ -396,6 +399,7 @@ function add() {
     }
 
 }
+// add3() adds eventlistener to the all of seeds of yellow and blue that are in the house 
 function add3() {
     var chil1 = hoye.children
     var child1 = hobl.children
@@ -405,11 +409,25 @@ function add3() {
     for (let j = 0; j < child1.length; j++) {
         hove = child1[j].addEventListener('click', moreMove)
     }
-
 }
+// add2() adds eventlistener to the all of seeds of green and red that are out of the house 
+function add2() {
+    let chil = document.getElementsByClassName('sing');
+    for (let s = 0; s < chil.length; s++) {
+        chil[s].addEventListener('click', movement)
+    }
+}
+// add4() adds eventlistener to the all of seeds of yellow and blue that are out of the house 
+function add4() {
+    var chil1 = document.getElementsByClassName('deal')
+    for (let s = 0; s < chil1.length; s++) {
+        chil1[s].addEventListener('click', moreMove)
+    }
+}
+// reMove() removes eventlistener from the all of seeds of green and red.
 function reMove() {
-    var chil = hose.children
-    var child = hoge.children
+    let chil = hose.children
+    let child = hoge.children
     for (let s = 0; s < chil.length; s++) {
         hov = chil[s].removeEventListener('click', movement)
     }
@@ -418,20 +436,24 @@ function reMove() {
         hove = child[j].removeEventListener('click', movement)
     }
 }
+// reMove2() removes eventlistener from the all of seeds of yellow and blue.
 function reMove2() {
-    var chil1 = hobl.children
-    var child1 = hoye.children
+    let chil1 = hobl.children;
+    let child1 = hoye.children;
     for (let s = 0; s < chil1.length; s++) {
-        hov = chil1[s].removeEventListener('click', moreMove)
+        chil1[s].removeEventListener('click', moreMove)
     }
 
     for (let j = 0; j < child1.length; j++) {
-        hove = child1[j].removeEventListener('click', moreMove)
+        child1[j].removeEventListener('click', moreMove)
     }
 }
+
 let gud
 let gud1
+let gud2
 let letter
+
 function currentPosition() {
     if (letter == 'r') {
         return 0
@@ -445,18 +467,20 @@ function currentPosition() {
         return
     }
 }
+
 function firstMove(position) {
     if (position == '') {
         return currentPosition()
     } else {
-        console.log(position);
         return position
     }
 }
+
 let realMove
+
 function movement(event) {
     gud = event.target.id;
-    console.log(gud);
+
     letter = gud.slice(0, 1)
     gud1 = event.target.classList;
     reMove()
@@ -470,34 +494,31 @@ function movement(event) {
         position = event.target.parentElement.dataset.place
 
     } else if (currentPosition() == 40 || currentPosition() == 26) {
-        return
     }
 
     if (letter == 'r') {
         event.currentTarget.remove()
         realMove = firstMove(position)
 
-        var gud2 = event.target.classList;
+        gud2 = event.target.classList;
 
         if (realMove == 0) {
             mainMove(realMove, gud2)
             outRed.push(event.target.id)
-            console.log(outRed);
         }
 
     } else if (letter == 'g') {
         event.currentTarget.remove()
         realMove = firstMove(position)
 
-        var gud2 = event.target.classList;
+        gud2 = event.target.classList;
         outGreen.push(event.target.id)
-        console.log(outGreen);
 
         if (realMove == 13) {
             mainMove(realMove, gud2)
         }
     } else {
-        var gud2 = event.target.classList;
+        gud2 = event.target.classList;
         realMove = position
         mainMove2(realMove, gud2)
     }
@@ -512,7 +533,11 @@ function stop(move) {
 }
 
 function mainMove(realMove, gud2) {
-    seed = `<div class="${gud2} sing" style = "position: absolute; " ></div>`
+    if (gud2[1] == 'red_child' || gud2[1] == 'green_child') {
+        seed = `<div class="${gud2} sing" style = "position: absolute; " ></div>`;
+    } else if (gud2[1] == 'yellow_child' || gud2[1] == 'blue_child') {
+        seed = `<div class="${gud2} deal" style = "position: absolute; " ></div>`;
+    }
     $(`[data-place=${realMove}]`).append(seed)
     bb = b + realMove
     aa = a + realMove
@@ -550,14 +575,17 @@ function mainMove(realMove, gud2) {
 
 }
 
-
 function mainMove2(realMove, gud2) {
     realMove = parseInt(realMove)
     a = parseInt(a)
     b = parseInt(b);
     da = parseInt(da);
     db = parseInt(db);
-    seed = `<div class="${gud2} sing" style = "position: absolute; " ></div>`;
+    if (gud2[1] == 'red_child' || gud2[1] == 'green_child') {
+        seed = `<div class="${gud2} sing" style = "position: absolute; " ></div>`;
+    } else if (gud2[1] == 'yellow_child' || gud2[1] == 'blue_child') {
+        seed = `<div class="${gud2} deal" style = "position: absolute; " ></div>`;
+    }
     bb = (b + a) + realMove + da + db
 
     var move = setInterval(() => {
@@ -566,29 +594,31 @@ function mainMove2(realMove, gud2) {
             bb = bb - 52
             realMove = -1
         }
-        console.log(main);
         realMove++
         if (gud2[1] == 'red_child' && realMove == 51) {
             realMove = 101;
-            bb = (bb - 51) + realMove;
-
+            bb = (bb - 50) + realMove;
         } else if (gud2[1] == 'green_child' && realMove == 12) {
             realMove = 111
-            bb = (bb - 12) + realMove
-        } else if (gud2[1] == 'yellow_child' && realMove == 37) {
+            bb = (bb - 11) + realMove
+        } else if (gud2[1] == 'yellow_child' && realMove == 38) {
             realMove = 131
-            bb = (bb - 24) + realMove
-        } else if (gud2[1] == 'blue_child' && realMove == 24) {
+            bb = (bb - 37) + realMove
+        } else if (gud2[1] == 'blue_child' && realMove == 25) {
             realMove = 121
             bb = (bb - 24) + realMove
+
         }
-        if (realMove == 116 || realMove == 106) {
-            console.log('stop');
+        if (realMove == 116 || realMove == 106 || realMove == 126 || realMove == 136) {
+            checkWinner()
             if (realMove == 116) {
                 outGreen.splice(0, 1)
-            } else {
+            } else if (realMove == 106) {
                 outRed.splice(0, 1)
-
+            } else if (realMove == 126) {
+                outBlue.splice(0, 1)
+            } else if (realMove == 136) {
+                outYellow.splice(0, 1)
             }
             $(`[data-place=${realMove}] div`).last().remove()
             stop(move)
@@ -605,16 +635,16 @@ function mainMove2(realMove, gud2) {
     }, 500);
 }
 
-
 let position
 let movedPosition
+
 function moreMove(event) {
     gud = event.target.id;
-    console.log(gud);
+
     letter = gud.slice(0, 1)
     gud1 = event.target.classList;
     reMove2()
-    specOutR()
+    specOutR2()
     specBlueR()
     specYellowR()
 
@@ -624,14 +654,13 @@ function moreMove(event) {
         position = event.target.parentElement.dataset.place
 
     } else if (currentPosition() == 0 || currentPosition() == 13) {
-
     }
 
     if (letter == 'y') {
         event.currentTarget.remove()
         realMove = firstMove(position)
 
-        var gud2 = event.target.classList;
+        gud2 = event.target.classList;
 
         if (realMove == 39) {
             mainMove(realMove, gud2)
@@ -642,16 +671,23 @@ function moreMove(event) {
         event.currentTarget.remove()
         realMove = firstMove(position)
 
-        var gud2 = event.target.classList;
+        gud2 = event.target.classList;
         outBlue.push(event.target.id)
 
         if (realMove == 26) {
             mainMove(realMove, gud2)
         }
     } else {
-        var gud2 = event.target.classList;
+        gud2 = event.target.classList;
         realMove = position
         mainMove2(realMove, gud2)
     }
 
+}
+function checkWinner() {
+    if ((hose.length == 0 && hoge.length == 0) && (outGreen == 0 && outRed == 0)) {
+        alert('player 1 wins 💥💥🎉🎉🎉😀')
+    } else if ((hobl.length == 0 && hoye.length == 0) && (outYellow == 0 && outBlue == 0)) {
+        alert('player 2 wines💥💥🎉🎉🎉😀')
+    }
 }
