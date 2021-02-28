@@ -1,7 +1,7 @@
 let play = 'first';
 let col = ''
 // let aaa = ''
-let player = ['b', 'g'];
+let player = ['Red', 'Green', 'Blue', 'Yellow'];
 let two = document.getElementById('checktwo');
 let four = document.getElementById('checkfour');
 let frg = document.getElementById('checkrg');
@@ -24,9 +24,6 @@ let move
 // let rdrop = document.getElementById('rdrop')
 
 
-
-// document.getElementById('ludo').style.backgroundColor = 'rgba(0,0,0,0.2)'
-// document.getElementById('ludo').style.opacity = 0.3;
 $("#posi").text(`Choose your ${play} player : ${col}`)
 $('.sele_col').on('click', temi)
 $('#nxt').on('click', tomi)
@@ -119,21 +116,33 @@ function tolu() {
 }
 function rg() {
     if (sby.checked == true) {
+        $("#name2").css('display', 'none')
         sby.checked = false
+        $("#name1").css('display', 'inline-block')
+
         frg.checked = true
+
     } else {
+        $("#name1").css('display', 'inline-block')
         frg.checked = true
     }
 }
 function by() {
+   
     if (frg.checked == true) {
         frg.checked = false
+        $("#name1").css('display', 'none')
+        $("#name2").css('display', 'inline-block')
         sby.checked = true
+
     } else {
+        $("#name2").css('display', 'inline-block')
         sby.checked = true
+
     }
 }
 function secondPlay() {
+
     if (frg.checked == true || sby.checked == true) {
         if (frg.checked == true) {
             player = []
@@ -187,18 +196,101 @@ function ludoTwo() {
     block()
     diceDisp.style.display = 'none'
 }
+function ludoFour(params) {
+    block()
+    diceDisp.style.display = 'none';
+    document.getElementById('place').style.display = 'none';
+
+}
+let holl
+let dere = $("#place").text()
+
+function fourPlayer(dere) {
+    if (dere == '') {
+        dere = player[0]
+        return `${dere}`
+    } else if (dere == player[0]) {
+        dere = player[1]
+        return `${dere}`
+    } else if (dere == player[1]) {
+        dere = player[2]
+        return `${dere}`
+
+    } else if (dere == player[2]) {
+        dere = player[3]
+        return `${dere}`
+
+    } else if (dere == player[3]) {
+        dere = player[0]
+        return `${dere}`
+    }
+}
+
+function deter(dere) {
+    if (dere == 'Red') {
+        holl = hose.children
+        return holl
+    } else if (dere == 'Green') {
+        holl = hoge.children
+        return holl
+    } else if (dere == 'Yellow') {
+        holl = hoye.children
+        return holl
+    } else if (dere == 'Blue') {
+        holl = hobl.children
+        return holl
+    }
+}
+
+let arra
+function arr(dere) {
+    if (dere == 'Red') {
+        arra = outRed.length
+        return arra
+    } else if (dere == 'Green') {
+        arra = outGreen.length
+        return arra
+    } else if (dere == 'Yellow') {
+        arra = outYellow.length
+        return arra
+    } else if (dere == 'Blue') {
+        arra = outBlue.length
+        return arra
+    }
+}
+
+let spec
+function specC(dere) {
+    if (dere == 'Red') {
+        spec = specRed()
+        return spec
+    } else if (dere == 'Green') {
+        spec = specGreen()
+        return spec
+    } else if (dere == 'Yellow') {
+        spec = specYellow()
+        return spec
+    } else if (dere == 'Blue') {
+        spec = specBlue()
+        return spec
+    }
+}
 
 function img() {
     //  var lg  = localStorage.setItem('img',JSON.stringify(lgr))
-    var glg = JSON.parse(localStorage.getItem('img'))
+    if (player.length == 2) {
 
-    if (glg == lgr) {
-        diceDisp.style.backgroundImage = glg
-        localStorage.setItem('img', JSON.stringify(lgy))
-    } else {
-        diceDisp.style.backgroundImage = glg
-        localStorage.setItem('img', JSON.stringify(lgr))
         var glg = JSON.parse(localStorage.getItem('img'))
+        if (glg == lgr) {
+            diceDisp.style.backgroundImage = glg
+            localStorage.setItem('img', JSON.stringify(lgy))
+        } else {
+            diceDisp.style.backgroundImage = glg
+            localStorage.setItem('img', JSON.stringify(lgr))
+            var glg = JSON.parse(localStorage.getItem('img'))
+        }
+    } else if (player.length == 4) {
+
     }
 }
 
@@ -207,9 +299,11 @@ function rollD() {
     a = randiceA()
     b = randiceB()
     dice.style.display = 'none';
-    diceDisp.style.display = 'block'
+    diceDisp.style.display = 'block';
+    document.getElementById('place').style.display = 'block'
     img()
-    diceDisp.innerText = `${a}:${b}`
+    diceDisp.innerHTML = `${a}:${b}`
+    $('#place').text(`${fourPlayer(dere)}`)
     setTimeout(() => {
         loopPlayer()
     }, 1000);
@@ -218,6 +312,7 @@ function rollD() {
 // randiceA() generates the first random number.
 function randiceA() {
     return Math.ceil(Math.random() * 6)
+    // return 6
 }
 
 // randiceB() generates the second random number.
@@ -258,16 +353,51 @@ function red() {
 
 function loopPlayer() {
     none()
-    var glg = JSON.parse(localStorage.getItem('img'))
-    rea = glg.indexOf(226)
-
-    if (rea >= 0) {
-        red()
-    } else {
-        yellow()
+    if (player.length == 2) {
+        var glg = JSON.parse(localStorage.getItem('img'))
+        rea = glg.indexOf(226)
+        if (rea >= 0) {
+            red()
+        } else {
+            yellow()
+        }
+    } else if (player.length == 4) {
+        setTimeout(() => {
+            fourplay()
+        }, 500);
     }
 
 }
+let c
+let d
+function fourplay() {
+    c = fourPlayer(dere)
+    dere = c
+    d = deter(c)
+    e = arr(c)
+    if ((a == 6 || b == 6) && (d.length == 4) && (e >= 0)) {
+        adder(d)
+        specC(c)
+    } else if (((d.length <= 4) && (a < 6 && b < 6)) && (e == 0)) {
+        alert(c + ': you need a six to leave the house')
+        startGame()
+
+        // } else if (d.length < 4) {
+    } else if (d.length < 4) {
+        if (a == 6 || b == 6) {
+            if (e > 0) {
+                secMove()
+                specOut()
+            }
+            secMove()
+            specC(c)
+        } else if ((a <= 6 || b <= 6) || (e > 0)) {
+            secMove()
+            specOut()
+        }
+    }
+}
+
 
 function yellow() {
     var chil1 = hoye.children.length
@@ -330,6 +460,12 @@ function specOut() {
         ree[i].classList.add('spec')
     }
 }
+function secMove() {
+    let ree = document.getElementsByClassName(`${c}`)
+    for (let i = 0; i < ree.length; i++) {
+        ree[i].addEventListener('click', movement)
+    }
+}
 
 function specOutR() {
     let ree = document.getElementsByClassName('sing')
@@ -387,6 +523,7 @@ function sixgame() {
 function fivegame() {
     add3()
 }
+
 // add() adds eventlistener to the all of seeds of green and red that are in the house 
 function add() {
     let chil = hose.children
@@ -397,7 +534,6 @@ function add() {
     for (let j = 0; j < child.length; j++) {
         hove = child[j].addEventListener('click', movement)
     }
-
 }
 // add3() adds eventlistener to the all of seeds of yellow and blue that are in the house 
 function add3() {
@@ -434,6 +570,24 @@ function reMove() {
 
     for (let j = 0; j < child.length; j++) {
         hove = child[j].removeEventListener('click', movement)
+    }
+}
+
+function adder(de) {
+    for (let s = 0; s < de.length; s++) {
+        de[s].addEventListener('click', movement);
+    }
+}
+// reMove() removes eventlistener from the all of seeds of ///////////////////
+function reMover(de) {
+    for (let s = 0; s < de.length; s++) {
+        de[s].removeEventListener('click', movement)
+    }
+}
+
+function specR(lo) {
+    for (let i = 0; i < lo.length; i++) {
+        lo[i].classList.remove('spec')
     }
 }
 // reMove2() removes eventlistener from the all of seeds of yellow and blue.
@@ -483,17 +637,35 @@ function movement(event) {
 
     letter = gud.slice(0, 1)
     gud1 = event.target.classList;
-    reMove()
-    specRedR()
-    specOutR()
-    specGreenR()
+    if (player.length == 2) {
+        reMove()
+        specRedR()
+        specOutR()
+        specGreenR()
 
-    if (currentPosition() == 0 || currentPosition() == 13) {
-        position = ''
-    } else if (currentPosition() == undefined) {
-        position = event.target.parentElement.dataset.place
+        if (currentPosition() == 0 || currentPosition() == 13) {
+            position = ''
+        } else if (currentPosition() == undefined) {
+            position = event.target.parentElement.dataset.place
 
-    } else if (currentPosition() == 40 || currentPosition() == 26) {
+        } else if (currentPosition() == 40 || currentPosition() == 26) {
+        }
+    } else if (player.length == 4) {
+        reMover(d)
+        specOutR()
+        specR(d)
+
+        if (currentPosition() == 0) {
+            position = ''
+        } else if (currentPosition() == 13) {
+            position = ''
+        } else if (currentPosition() == 26) {
+            position = ''
+        } else if (currentPosition() == 39) {
+            position = ''
+        } else if (currentPosition() == undefined) {
+            position = event.target.parentElement.dataset.place
+        }
     }
 
     if (letter == 'r') {
@@ -517,11 +689,32 @@ function movement(event) {
         if (realMove == 13) {
             mainMove(realMove, gud2)
         }
+    } else if (letter == 'y') {
+        event.currentTarget.remove()
+        realMove = firstMove(position)
+
+        gud2 = event.target.classList;
+        outGreen.push(event.target.id)
+
+        if (realMove == 39) {
+            mainMove(realMove, gud2)
+        }
+    } else if (letter == 'b') {
+        event.currentTarget.remove()
+        realMove = firstMove(position)
+
+        gud2 = event.target.classList;
+        outGreen.push(event.target.id)
+
+        if (realMove == 26) {
+            mainMove(realMove, gud2)
+        }
     } else {
         gud2 = event.target.classList;
         realMove = position
         mainMove2(realMove, gud2)
     }
+
 
 }
 
@@ -533,10 +726,14 @@ function stop(move) {
 }
 
 function mainMove(realMove, gud2) {
-    if (gud2[1] == 'red_child' || gud2[1] == 'green_child') {
-        seed = `<div class="${gud2} sing" style = "position: absolute; " ></div>`;
-    } else if (gud2[1] == 'yellow_child' || gud2[1] == 'blue_child') {
-        seed = `<div class="${gud2} deal" style = "position: absolute; " ></div>`;
+    if (gud2[1] == 'red_child') {
+        seed = `<div class="${gud2} sing Red" style = "position: absolute; " ></div>`;
+    } else if (gud2[1] == 'yellow_child') {
+        seed = `<div class="${gud2} deal Yellow" style = "position: absolute; " ></div>`;
+    } else if (gud2[1] == 'blue_child') {
+        seed = `<div class="${gud2} deal Blue" style = "position: absolute; " ></div>`;
+    } else if (gud2[1] == 'green_child') {
+        seed = `<div class="${gud2} sing Green" style = "position: absolute; " ></div>`;
     }
     $(`[data-place=${realMove}]`).append(seed)
     bb = b + realMove
@@ -581,10 +778,14 @@ function mainMove2(realMove, gud2) {
     b = parseInt(b);
     da = parseInt(da);
     db = parseInt(db);
-    if (gud2[1] == 'red_child' || gud2[1] == 'green_child') {
-        seed = `<div class="${gud2} sing" style = "position: absolute; " ></div>`;
-    } else if (gud2[1] == 'yellow_child' || gud2[1] == 'blue_child') {
-        seed = `<div class="${gud2} deal" style = "position: absolute; " ></div>`;
+    if (gud2[1] == 'red_child') {
+        seed = `<div class="${gud2} sing Red" style = "position: absolute; " ></div>`;
+    } else if (gud2[1] == 'yellow_child') {
+        seed = `<div class="${gud2} deal Yellow" style = "position: absolute; " ></div>`;
+    } else if (gud2[1] == 'blue_child') {
+        seed = `<div class="${gud2} deal Blue" style = "position: absolute; " ></div>`;
+    } else if (gud2[1] == 'green_child') {
+        seed = `<div class="${gud2} sing Green" style = "position: absolute; " ></div>`;
     }
     bb = (b + a) + realMove + da + db
 

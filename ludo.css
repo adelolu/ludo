@@ -177,10 +177,10 @@ td{
 }
 #diceDisp{
     display: none;
-    top: -30px;
+    top: -50px;
     position: relative;
     background-color: white;
-    background-image: linear-gradient(to right,rgba(4, 4, 139, 0.603),rgba(226, 226, 4, 0.616));
+    /* background-image: linear-gradient(to right,rgba(4, 4, 139, 0.603),rgba(226, 226, 4, 0.616)); */
     height: 100px;
     color: rgb(197, 197, 197);
     font-size: 60px;
@@ -194,4 +194,19 @@ td{
 .spec, .single{
     box-shadow: 3px 3px 6px rgb(39, 6, 12);
     /* background-color: rgba(0, 0, 0, 0.377); */
+}
+#name1,#name2{
+    display: none;
+    width: 50%;
+}
+#place{
+    z-index: 4;
+    height: 25px;
+    letter-spacing: 0px;
+    font-size: 18px;
+    color:rgb(44, 27, 27);
+    display: none;
+    position: absolute;
+    top: 30px;
+    /* left: -30px; */
 }
