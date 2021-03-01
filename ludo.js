@@ -1,7 +1,7 @@
 let play = 'first';
 let col = ''
 // let aaa = ''
-let player = ['Red', 'Green', 'Blue', 'Yellow'];
+let player = [];
 let two = document.getElementById('checktwo');
 let four = document.getElementById('checkfour');
 let frg = document.getElementById('checkrg');
@@ -22,8 +22,10 @@ let da = 0
 let db = 0
 let move
 // let rdrop = document.getElementById('rdrop')
+let game = document.getElementById('ludo')
 
-
+document.getElementById('ludo').style.backgroundColor = 'rgba(0,0,0,0.4)'
+document.getElementById('ludo').style.opacity = 0.3;
 $("#posi").text(`Choose your ${play} player : ${col}`)
 $('.sele_col').on('click', temi)
 $('#nxt').on('click', tomi)
@@ -80,12 +82,11 @@ function tomi(l) {
             document.getElementById('ludo').style.opacity = 1;
             $("#select").hide()
             player.push(ac)
-            alert(player)
         }
     }
 
 }
-function ct() {
+function picktwo() {
     if (four.checked == true) {
         four.checked = false
         two.checked = true
@@ -93,7 +94,7 @@ function ct() {
         two.checked = true
     }
 }
-function cf() {
+function pickfour() {
     if (two.checked == true) {
         two.checked = false
         four.checked = true
@@ -128,7 +129,7 @@ function rg() {
     }
 }
 function by() {
-   
+
     if (frg.checked == true) {
         frg.checked = false
         $("#name1").css('display', 'none')
@@ -169,7 +170,6 @@ function secondPlay() {
         }
     }
 }
-let game = document.getElementById('ludo')
 function block() {
     game.style.opacity = 0.3;
     roll.style.display = 'block';
@@ -189,9 +189,9 @@ function startGame() {
         }
     }, 1000);
 }
-setTimeout(() => {
-    startGame()
-}, 1000);
+// setTimeout(() => {
+//     startGame()
+// }, 1000);
 function ludoTwo() {
     block()
     diceDisp.style.display = 'none'

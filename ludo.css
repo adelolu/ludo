@@ -94,7 +94,7 @@ td{
     margin-right: auto;
     width: 500px;
     z-index: 2;
-    display: none;
+    /* display: none; */
 }
 
 #select{
@@ -203,8 +203,9 @@ td{
     z-index: 4;
     height: 25px;
     letter-spacing: 0px;
-    font-size: 18px;
-    color:rgb(44, 27, 27);
+    font-size: 20px;
+    font-weight: 50;
+    color:rgb(112, 110, 110);
     display: none;
     position: absolute;
     top: 30px;
