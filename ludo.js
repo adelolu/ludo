@@ -9,7 +9,7 @@ let sby = document.getElementById('checkby');
 let dice = document.getElementById('dice');
 let disp = document.getElementById('diceDisp');
 let roll = document.getElementById('roll');
-// let out = document.getElementsByClassName('oside');
+let out = document.getElementsByClassName('oside');
 let hose = document.getElementById('red_house');
 let hoge = document.getElementById('green_house');
 let hoye = document.getElementById('yellow_house');
@@ -21,10 +21,10 @@ let b
 let da = 0
 let db = 0
 let move
-// let rdrop = document.getElementById('rdrop')
+let rdrop = document.getElementById('rdrop')
 let game = document.getElementById('ludo')
-
-document.getElementById('ludo').style.backgroundColor = 'rgba(0,0,0,0.4)'
+console.log('temi');
+document.getElementById('ludo').style.backgroundColor = 'rgba(0,0,0,0.2)'
 document.getElementById('ludo').style.opacity = 0.3;
 $("#posi").text(`Choose your ${play} player : ${col}`)
 $('.sele_col').on('click', temi)
@@ -86,7 +86,8 @@ function tomi(l) {
     }
 
 }
-function picktwo() {
+function pickT() {
+    console.log('hhh');
     if (four.checked == true) {
         four.checked = false
         two.checked = true
@@ -189,9 +190,9 @@ function startGame() {
         }
     }, 1000);
 }
-// setTimeout(() => {
-//     startGame()
-// }, 1000);
+setTimeout(() => {
+    startGame()
+}, 1000);
 function ludoTwo() {
     block()
     diceDisp.style.display = 'none'
