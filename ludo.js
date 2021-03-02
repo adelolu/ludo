@@ -9,27 +9,28 @@ let sby = document.getElementById('checkby');
 let dice = document.getElementById('dice');
 let disp = document.getElementById('diceDisp');
 let roll = document.getElementById('roll');
-let out = document.getElementsByClassName('oside');
+// let out = document.getElementsByClassName('oside');
 let hose = document.getElementById('red_house');
 let hoge = document.getElementById('green_house');
 let hoye = document.getElementById('yellow_house');
 let hobl = document.getElementById('blue_house');
-let lgr = 'linear-gradient(to right, rgba(255, 0, 0, 0.644)  , rgba(4, 170, 4, 0.589))';
+let lgr = 'linear-gradient(to right, rgba(255, 0, 0, 0.644), rgba(4, 170, 4, 0.589))';
 let lgy = 'linear-gradient(to right,rgba(4, 4, 139, 0.603),rgba(226, 226, 4, 0.616))';
 let a
 let b
 let da = 0
 let db = 0
 let move
-let rdrop = document.getElementById('rdrop')
+// let rdrop = document.getElementById('rdrop')
 let game = document.getElementById('ludo')
-console.log('temi');
+
 document.getElementById('ludo').style.backgroundColor = 'rgba(0,0,0,0.2)'
 document.getElementById('ludo').style.opacity = 0.3;
 $("#posi").text(`Choose your ${play} player : ${col}`)
 $('.sele_col').on('click', temi)
 $('#nxt').on('click', tomi)
 $('#next').on('click', tolu)
+// selects the houses for a game of fourplayers
 function temi(l) {
     aaa = col
     var bb = l.target.parentElement.children.length
@@ -45,7 +46,7 @@ function temi(l) {
         if (play == 'four' && bb == 3) {
             col = l.target.innerText
             $("#posi").text(`Choose your ${play} player : ${col}`)
-            $('#nxt').text('Start game')
+            $('#nxt').text('  Next')
 
         } else {
             l.currentTarget.style.display = 'block';
@@ -72,22 +73,20 @@ function tomi(l) {
         var d = $('#nxt').text()
         var ac = l.target.parentElement.children[1].innerText
         document.getElementById('select').style.height = ' 120px'
-        $('#nxt').text('Start game')
-        $('#nxt').css({
-            'width': '120px',
-            'left': '72%',
-        })
-        if (d == 'Start game' && col === ac) {
-            document.getElementById('ludo').style.backgroundColor = 'white'
-            document.getElementById('ludo').style.opacity = 1;
+        $('#nxt').text('  Next')
+        // $('#nxt').css({
+        //     'width': '120px',
+        //     'left': '72%',
+        // })
+        if (d == '  Next' && col === ac) {
             $("#select").hide()
+            $("#playfour").show(500)
             player.push(ac)
         }
     }
 
 }
 function pickT() {
-    console.log('hhh');
     if (four.checked == true) {
         four.checked = false
         two.checked = true
@@ -103,6 +102,7 @@ function pickfour() {
         four.checked = true
     }
 }
+// tolu() determines the numbers of players for the game 
 function tolu() {
     if (two.checked == true || four.checked == true) {
         document.getElementById('choose').style.display = 'none'
@@ -116,16 +116,13 @@ function tolu() {
         }
     }
 }
+
 function rg() {
     if (sby.checked == true) {
-        $("#name2").css('display', 'none')
         sby.checked = false
-        $("#name1").css('display', 'inline-block')
-
         frg.checked = true
 
     } else {
-        $("#name1").css('display', 'inline-block')
         frg.checked = true
     }
 }
@@ -133,18 +130,13 @@ function by() {
 
     if (frg.checked == true) {
         frg.checked = false
-        $("#name1").css('display', 'none')
-        $("#name2").css('display', 'inline-block')
         sby.checked = true
 
     } else {
-        $("#name2").css('display', 'inline-block')
         sby.checked = true
-
     }
 }
 function secondPlay() {
-
     if (frg.checked == true || sby.checked == true) {
         if (frg.checked == true) {
             player = []
@@ -154,22 +146,43 @@ function secondPlay() {
             player.push(sby.parentElement.innerText, frg.parentElement.innerText)
         }
         var aa = $("#nex").text()
-        $('#nex').css({
-            'width': '120px',
-            'left': '72%',
-        })
-        if (aa == 'Start game' && frg.checked == true || aa == 'Start game' && sby.checked == true) {
-            document.getElementById('ludo').style.backgroundColor = 'white'
-            document.getElementById('ludo').style.opacity = 1;
-            document.getElementById('selectTwo').style.display = 'none';
-            startGame()
-
+        // $('#nex').css({
+        //     'width': '120px',
+        //     'left': '72%',
+        // })
+        if (aa == ' Next' && frg.checked == true || aa == ' Next' && sby.checked == true) {
+            // document.getElementById('playtwo').style.display = 'none';
+            $("#selectTwo").hide(500)
+            $("#playtwo").show(500)
         } else {
-            $("#nex").text('Start game')
+            $("#nex").text(' Next')
             frg.disabled = true
             sby.disabled = true
         }
     }
+}
+
+
+let name3 = $('#name3').val()
+let name4 = $('#name4').val()
+let name5 = $('#name5').val()
+let name6 = $('#name6').val()
+
+function players(ran) {
+    name3 = $('#name3').val()
+    name4 = $('#name4').val()
+    name5 = $('#name5').val()
+    name6 = $('#name6').val()
+}
+function namea() {
+    document.getElementById('ludo').style.backgroundColor = 'white'
+    document.getElementById('ludo').style.opacity = 1;
+    if (player.length == 2) {
+        $("#playtwo").hide(500)
+    } else if (player.length == 4) {
+        $("#playfour").hide(500)
+    }
+    startGame()
 }
 function block() {
     game.style.opacity = 0.3;
@@ -182,17 +195,16 @@ function none() {
     dice.style.display = 'none';
 }
 function startGame() {
+    console.log(player.length);
     setTimeout(() => {
         if (player.length == 2) {
             ludoTwo()
-        } else {
+        } else if (player.length == 4) {
+            console.log('mean');
             ludoFour()
         }
     }, 1000);
 }
-setTimeout(() => {
-    startGame()
-}, 1000);
 function ludoTwo() {
     block()
     diceDisp.style.display = 'none'
@@ -201,28 +213,55 @@ function ludoFour(params) {
     block()
     diceDisp.style.display = 'none';
     document.getElementById('place').style.display = 'none';
+    document.getElementById('place1').style.display = 'none';
 
 }
 let holl
 let dere = $("#place").text()
+let dere1 = $("#place1").text()
 
 function fourPlayer(dere) {
     if (dere == '') {
         dere = player[0]
+        if (name3 != '') {
+            dere1 = name3
+        } else {
+            dere1 = 'player 1'
+        }
         return `${dere}`
     } else if (dere == player[0]) {
         dere = player[1]
+        if (name4 != '') {
+            dere1 = name4
+        } else {
+            dere1 = 'player 2'
+        }
         return `${dere}`
     } else if (dere == player[1]) {
         dere = player[2]
+        if (name5 != '') {
+            dere1 = name5
+        } else {
+            dere1 = 'player 3'
+        }
         return `${dere}`
 
     } else if (dere == player[2]) {
         dere = player[3]
+        if (name6 != '') {
+            dere1 = name6
+        } else {
+            dere1 = 'player 4'
+        }
         return `${dere}`
 
     } else if (dere == player[3]) {
         dere = player[0]
+        if (name3 != '') {
+            dere1 = name3
+        } else {
+            dere1 = 'player 1'
+        }
         return `${dere}`
     }
 }
@@ -278,8 +317,23 @@ function specC(dere) {
 }
 
 function img() {
-    //  var lg  = localStorage.setItem('img',JSON.stringify(lgr))
+    let name1 = $('#name1').val()
+    let name2 = $('#name2').val()
     if (player.length == 2) {
+        console.log(dere1);
+        console.log(name1);
+        console.log(name2);
+        console.log(player[0]);
+        console.log(player[1]);
+        if (dere1 == '') {
+            if (player[0] ) {
+                
+            }
+        } else {
+
+        }
+
+        $("#place1").html(`${dere1}`)
 
         var glg = JSON.parse(localStorage.getItem('img'))
         if (glg == lgr) {
@@ -291,7 +345,8 @@ function img() {
             var glg = JSON.parse(localStorage.getItem('img'))
         }
     } else if (player.length == 4) {
-
+        $('#place').text(`${fourPlayer(dere)}`)
+        $("#place1").html(`: ${dere1}`)
     }
 }
 
@@ -302,12 +357,13 @@ function rollD() {
     dice.style.display = 'none';
     diceDisp.style.display = 'block';
     document.getElementById('place').style.display = 'block'
+    document.getElementById('place1').style.display = 'block'
     img()
     diceDisp.innerHTML = `${a}:${b}`
-    $('#place').text(`${fourPlayer(dere)}`)
+
     setTimeout(() => {
         loopPlayer()
-    }, 1000);
+    }, 10000);
 
 }
 // randiceA() generates the first random number.
@@ -354,7 +410,10 @@ function red() {
 
 function loopPlayer() {
     none()
+    console.log('plll');
     if (player.length == 2) {
+
+
         var glg = JSON.parse(localStorage.getItem('img'))
         rea = glg.indexOf(226)
         if (rea >= 0) {
@@ -380,7 +439,7 @@ function fourplay() {
         adder(d)
         specC(c)
     } else if (((d.length <= 4) && (a < 6 && b < 6)) && (e == 0)) {
-        alert(c + ': you need a six to leave the house')
+        alert(dere1 + ': you need a six to leave the house')
         startGame()
 
         // } else if (d.length < 4) {

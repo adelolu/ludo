@@ -350,20 +350,57 @@
 		<form action="">
 			<div id="sele1" class="sele sele_col2">
 				<span><input type="checkbox" id="checkrg" onclick="rg()"> Red and Green </span>
-				<span><input id="name1" class="form-control " type="text" placeholder="Input player name"></span>
+				<!-- <span><input id="name1" class="form-control " type="text" placeholder="Input player name"></span> -->
 			</div>
 			<div class="sele sele_col2">
 				<span><input type="checkbox" id="checkby" onclick="by()"> Blue and Yellow </span>
-				<span><input id="name2" class="form-control " type="text" placeholder="Input player name"></span>
+				<!-- <span><input id="name2" class="form-control " type="text" placeholder="Input player name"></span> -->
 			</div>
 		</form>
 		<div id="nex" onclick="secondPlay()">Next</div>
 
 	</div>
+
+	<div class="player_name" id="playtwo" style=" height: 160px; padding-top: 5px;">
+		<form action="">
+			<div class="input sele_col2">
+				<input id="name1" class="form-control " type="text" placeholder="Input player one name">
+			</div>
+			<div class="input sele_col2">
+				<input id="name2" class="form-control" type="text" placeholder="Input player two name">
+			</div>
+		</form>
+		<div id="nex" style="display: block;" onclick="namea()">Next</div>
+
+	</div>
+	<div class="player_name" id="playfour">
+		<div class="sele_col2 input">
+			<input id="name3" class="form-control " type="text" placeholder="Input player one name">
+		</div>
+		<div class="sele_col2 input">
+			<input id="name4" class="form-control" type="text" placeholder="Input player two name">
+		</div>
+		<div class="sele_col2 input">
+			<input id="name5" class="form-control" type="text" placeholder="Input player three name">
+		</div>
+		<div class="sele_col2 input">
+			<input id="name6" class="form-control" type="text" placeholder="Input player four name">
+		</div>
+		<div id="nex2" onclick="namea()">Start Game</div>
+
+	</div>
+
 	<div id="roll">
 		<div id="dice" class="roll" onclick="rollD()">Roll dice</div>
-		<div  class="roll">
-			<div id="place">"></script>
+		<div id="diceDisp" class="roll"></div>
+		<div id="place"></div>
+		<div id="place1" style="width: 80px;height: 20px; position: relative;top: -150px; left: 165px;"></div>
+	</div>
+
+	<script src="bootstrap/js/popper.min.js"></script>
+	<script src="bootstrap/js/jquery.min.js"></script>
+	<script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="ludo.js"></script>
 </body>
 
 </html>
