@@ -207,8 +207,8 @@ td{
     letter-spacing: 0px;
     font-size: 20px;
     font-weight: 50;
-    background-color: indianred;
-    color:rgb(255, 255, 255);
+    /* background-color: indianred; */
+    color:rgb(121, 115, 115);
     display: none;
     position: absolute;
     top: 30px;

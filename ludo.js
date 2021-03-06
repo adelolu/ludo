@@ -1,7 +1,8 @@
 let play = 'first';
 let col = ''
 // let aaa = ''
-let player = [];
+let player = ['Red', 'Yellow', 'Green', "Blue"];
+// let player = [];
 let two = document.getElementById('checktwo');
 let four = document.getElementById('checkfour');
 let frg = document.getElementById('checkrg');
@@ -9,13 +10,12 @@ let sby = document.getElementById('checkby');
 let dice = document.getElementById('dice');
 let disp = document.getElementById('diceDisp');
 let roll = document.getElementById('roll');
-// let out = document.getElementsByClassName('oside');
 let hose = document.getElementById('red_house');
 let hoge = document.getElementById('green_house');
 let hoye = document.getElementById('yellow_house');
 let hobl = document.getElementById('blue_house');
-let lgr = 'linear-gradient(to right, rgba(255, 0, 0, 0.644), rgba(4, 170, 4, 0.589))';
-let lgy = 'linear-gradient(to right,rgba(4, 4, 139, 0.603),rgba(226, 226, 4, 0.616))';
+// let lgr = 'linear-gradient(to right, rgba(255, 0, 0, 0.644), rgba(4, 170, 4, 0.589))';
+// let lgy = 'linear-gradient(to right,rgba(4, 4, 139, 0.603),rgba(226, 226, 4, 0.616))';
 let a
 let b
 let da = 0
@@ -30,6 +30,7 @@ $("#posi").text(`Choose your ${play} player : ${col}`)
 $('.sele_col').on('click', temi)
 $('#nxt').on('click', tomi)
 $('#next').on('click', tolu)
+
 // selects the houses for a game of fourplayers
 function temi(l) {
     aaa = col
@@ -136,6 +137,7 @@ function by() {
         sby.checked = true
     }
 }
+
 function secondPlay() {
     if (frg.checked == true || sby.checked == true) {
         if (frg.checked == true) {
@@ -162,18 +164,6 @@ function secondPlay() {
     }
 }
 
-
-let name3 = $('#name3').val()
-let name4 = $('#name4').val()
-let name5 = $('#name5').val()
-let name6 = $('#name6').val()
-
-function players(ran) {
-    name3 = $('#name3').val()
-    name4 = $('#name4').val()
-    name5 = $('#name5').val()
-    name6 = $('#name6').val()
-}
 function namea() {
     document.getElementById('ludo').style.backgroundColor = 'white'
     document.getElementById('ludo').style.opacity = 1;
@@ -195,12 +185,10 @@ function none() {
     dice.style.display = 'none';
 }
 function startGame() {
-    console.log(player.length);
     setTimeout(() => {
         if (player.length == 2) {
             ludoTwo()
         } else if (player.length == 4) {
-            console.log('mean');
             ludoFour()
         }
     }, 1000);
@@ -208,8 +196,9 @@ function startGame() {
 function ludoTwo() {
     block()
     diceDisp.style.display = 'none'
+    $("#place").hide(500)
 }
-function ludoFour(params) {
+function ludoFour() {
     block()
     diceDisp.style.display = 'none';
     document.getElementById('place').style.display = 'none';
@@ -221,6 +210,11 @@ let dere = $("#place").text()
 let dere1 = $("#place1").text()
 
 function fourPlayer(dere) {
+    name3 = $('#name3').val()
+    name4 = $('#name4').val()
+    name5 = $('#name5').val()
+    name6 = $('#name6').val()
+
     if (dere == '') {
         dere = player[0]
         if (name3 != '') {
@@ -265,6 +259,10 @@ function fourPlayer(dere) {
         return `${dere}`
     }
 }
+
+// setTimeout(() => {
+//     startGame()
+// }, 500);
 
 function deter(dere) {
     if (dere == 'Red') {
@@ -315,41 +313,52 @@ function specC(dere) {
         return spec
     }
 }
-
+let name1
+let name2
 function img() {
-    let name1 = $('#name1').val()
-    let name2 = $('#name2').val()
+
     if (player.length == 2) {
-        console.log(dere1);
-        console.log(name1);
-        console.log(name2);
-        console.log(player[0]);
-        console.log(player[1]);
-        if (dere1 == '') {
-            if (player[0] ) {
-                
+        name1 = $('#name1').val()
+        name2 = $('#name2').val()
+
+        if (dere1 == name1) {
+            if (name2 == ' ') {
+                dere1 = 'player 2'
+            } else {
+                dere1 = name2
             }
+            $("#place").html(`player2: ${dere1}`);
+
         } else {
+            if (name1 == ' ') {
+                dere1 = 'player 1'
+            } else {
+                dere1 = name1
+            }
+            $("#place").html(`player1: ${dere1}`);
 
-        }
-
-        $("#place1").html(`${dere1}`)
-
-        var glg = JSON.parse(localStorage.getItem('img'))
-        if (glg == lgr) {
-            diceDisp.style.backgroundImage = glg
-            localStorage.setItem('img', JSON.stringify(lgy))
-        } else {
-            diceDisp.style.backgroundImage = glg
-            localStorage.setItem('img', JSON.stringify(lgr))
-            var glg = JSON.parse(localStorage.getItem('img'))
         }
     } else if (player.length == 4) {
-        $('#place').text(`${fourPlayer(dere)}`)
-        $("#place1").html(`: ${dere1}`)
+        if (hose.children.length == 0 && outRed.length == 0) {
+            console.log('yh');
+            startGame()
+        } else if (hobl.children.length == 0 && outBlue.length == 0) {
+            startGame()
+        } else if (hoge.children.length == 0 && outGreen.length == 0) {
+            startGame()
+        } else if (hoye.children.length == 0 && outYellow.length == 0) {
+            startGame()
+        } else {
+            console.log('help me nah!!!!!');
+        }
+        $('#place').text(`${fourPlayer(dere)}`);
+        $("#place1").html(`: ${dere1}`);
     }
 }
-
+let backg
+let c
+let d
+let e
 // rollD() displays the number of the rolled dice.
 function rollD() {
     a = randiceA()
@@ -360,16 +369,14 @@ function rollD() {
     document.getElementById('place1').style.display = 'block'
     img()
     diceDisp.innerHTML = `${a}:${b}`
-
     setTimeout(() => {
         loopPlayer()
-    }, 10000);
-
+    }, 1000);
 }
 // randiceA() generates the first random number.
 function randiceA() {
-    return Math.ceil(Math.random() * 6)
-    // return 6
+    // return Math.ceil(Math.random() * 6)
+    return 6
 }
 
 // randiceB() generates the second random number.
@@ -385,11 +392,12 @@ function red() {
     var chil = hose.children.length
     var child = hoge.children.length
     if (((a == 6 || b == 6) && (chil == 4 && child == 4)) || ((outGreen > 0 || outRed > 0) && (a == 6 || b == 6))) {
-        sixgame()
+        add()
         specRed()
         specGreen()
 
     } else if (((chil <= 4 || child <= 4) && (a < 6 && b < 6)) && (outGreen == 0 && outRed == 0)) {
+        // alert(`${dere1}: you need a six to leave the house`)
         startGame()
 
     } else if (chil < 4 || child < 4) {
@@ -398,7 +406,7 @@ function red() {
                 add2()
                 specOut()
             }
-            sixgame()
+            add()
             specRed()
             specGreen()
         } else if ((a <= 6 || b <= 6) || (outGreen > 0 || outRed > 0)) {
@@ -410,16 +418,20 @@ function red() {
 
 function loopPlayer() {
     none()
-    console.log('plll');
     if (player.length == 2) {
+        if (player[0].indexOf('Red') >= 0) {
+            if (dere1 == name1) {
+                red()
+            } else {
+                yellow()
+            }
 
-
-        var glg = JSON.parse(localStorage.getItem('img'))
-        rea = glg.indexOf(226)
-        if (rea >= 0) {
-            red()
-        } else {
-            yellow()
+        } else if (player[0].indexOf('Blue') >= 0) {
+            if (dere1 == name1) {
+                yellow()
+            } else {
+                red()
+            }
         }
     } else if (player.length == 4) {
         setTimeout(() => {
@@ -428,8 +440,7 @@ function loopPlayer() {
     }
 
 }
-let c
-let d
+
 function fourplay() {
     c = fourPlayer(dere)
     dere = c
@@ -441,14 +452,9 @@ function fourplay() {
     } else if (((d.length <= 4) && (a < 6 && b < 6)) && (e == 0)) {
         alert(dere1 + ': you need a six to leave the house')
         startGame()
-
-        // } else if (d.length < 4) {
     } else if (d.length < 4) {
         if (a == 6 || b == 6) {
-            if (e > 0) {
-                secMove()
-                specOut()
-            }
+            adder(d)
             secMove()
             specC(c)
         } else if ((a <= 6 || b <= 6) || (e > 0)) {
@@ -463,11 +469,13 @@ function yellow() {
     var chil1 = hoye.children.length
     var child1 = hobl.children.length
     if (((a == 6 || b == 6) && (chil1 == 4 && child1 == 4)) || ((outYellow > 0 || outBlue > 0) && (a == 6 || b == 6))) {
-        fivegame()
+        add3()
         specYellow()
         specBlue()
 
     } else if (((chil1 <= 4 || child1 <= 4) && (a < 6 && b < 6)) && (outYellow == 0 && outBlue == 0)) {
+        // alert(`${dere1}: you need a six to leave the house`) 
+
         startGame()
 
     } else if (chil1 < 4 || child1 < 4) {
@@ -476,7 +484,7 @@ function yellow() {
                 add4()
                 specOut2()
             }
-            fivegame()
+            add3()
             specYellow()
             specBlue()
         } else if ((a <= 6 || b <= 6) || (outYellow > 0 || outRed > 0)) {
@@ -499,7 +507,7 @@ function specGreen() {
         geen[i].classList.add('spec')
     }
 }
-
+// removes class name (spec) form the seeds inside of house red
 function specRedR() {
     let ree = document.getElementsByClassName('red_child')
     for (let i = 0; i < ree.length; i++) {
@@ -521,9 +529,15 @@ function specOut() {
     }
 }
 function secMove() {
-    let ree = document.getElementsByClassName(`${c}`)
+    let ree = document.getElementsByClassName(c)
     for (let i = 0; i < ree.length; i++) {
         ree[i].addEventListener('click', movement)
+    }
+}
+function secMoveR() {
+    let ree = document.getElementsByClassName(c)
+    for (let i = 0; i < ree.length; i++) {
+        ree[i].removeEventListener('click', movement)
     }
 }
 
@@ -575,15 +589,6 @@ function specBlueR() {
         bue[i].classList.remove('spec')
     }
 }
-
-function sixgame() {
-    add()
-}
-
-function fivegame() {
-    add3()
-}
-
 // add() adds eventlistener to the all of seeds of green and red that are in the house 
 function add() {
     let chil = hose.children
@@ -620,31 +625,19 @@ function add4() {
         chil1[s].addEventListener('click', moreMove)
     }
 }
-// reMove() removes eventlistener from the all of seeds of green and red.
-function reMove() {
-    let chil = hose.children
-    let child = hoge.children
-    for (let s = 0; s < chil.length; s++) {
-        hov = chil[s].removeEventListener('click', movement)
-    }
-
-    for (let j = 0; j < child.length; j++) {
-        hove = child[j].removeEventListener('click', movement)
-    }
-}
 
 function adder(de) {
     for (let s = 0; s < de.length; s++) {
         de[s].addEventListener('click', movement);
     }
 }
-// reMove() removes eventlistener from the all of seeds of ///////////////////
+// reMover() removes eventlistener from the all of seeds of the current player
 function reMover(de) {
     for (let s = 0; s < de.length; s++) {
         de[s].removeEventListener('click', movement)
     }
 }
-
+//specR() removes classList 'spec' from all seeds inside the house
 function specR(lo) {
     for (let i = 0; i < lo.length; i++) {
         lo[i].classList.remove('spec')
@@ -662,7 +655,18 @@ function reMove2() {
         child1[j].removeEventListener('click', moreMove)
     }
 }
+// reMove() removes eventlistener from the all of seeds of green and red.
+function reMove() {
+    let chil = hose.children
+    let child = hoge.children
+    for (let s = 0; s < chil.length; s++) {
+        hov = chil[s].removeEventListener('click', movement)
+    }
 
+    for (let j = 0; j < child.length; j++) {
+        hove = child[j].removeEventListener('click', movement)
+    }
+}
 let gud
 let gud1
 let gud2
@@ -702,7 +706,6 @@ function movement(event) {
         specRedR()
         specOutR()
         specGreenR()
-
         if (currentPosition() == 0 || currentPosition() == 13) {
             position = ''
         } else if (currentPosition() == undefined) {
@@ -712,7 +715,9 @@ function movement(event) {
         }
     } else if (player.length == 4) {
         reMover(d)
+        secMoveR()
         specOutR()
+        specOutR2()
         specR(d)
 
         if (currentPosition() == 0) {
@@ -733,7 +738,6 @@ function movement(event) {
         realMove = firstMove(position)
 
         gud2 = event.target.classList;
-
         if (realMove == 0) {
             mainMove(realMove, gud2)
             outRed.push(event.target.id)
@@ -796,11 +800,14 @@ function mainMove(realMove, gud2) {
         seed = `<div class="${gud2} sing Green" style = "position: absolute; " ></div>`;
     }
     $(`[data-place=${realMove}]`).append(seed)
+    kill(realMove, gud2)
     bb = b + realMove
     aa = a + realMove
     var move = setInterval(() => {
         main = $(`[data-place=${realMove}] div`).last().detach()
         realMove++
+        kill(realMove, gud2)
+
         $(`[data-place=${realMove}]`).append(seed)
         if (a == 6) {
 
@@ -847,7 +854,8 @@ function mainMove2(realMove, gud2) {
     } else if (gud2[1] == 'green_child') {
         seed = `<div class="${gud2} sing Green" style = "position: absolute; " ></div>`;
     }
-    bb = (b + a) + realMove + da + db
+    // bb = (b + a) + realMove + da + db
+    bb = (b + a) + 48 + da + db
 
     var move = setInterval(() => {
         main = $(`[data-place=${realMove}] div`).last().remove()
@@ -855,7 +863,10 @@ function mainMove2(realMove, gud2) {
             bb = bb - 52
             realMove = -1
         }
+        // checkWinner()
+
         realMove++
+        kill(realMove, gud2)
         if (gud2[1] == 'red_child' && realMove == 51) {
             realMove = 101;
             bb = (bb - 50) + realMove;
@@ -871,7 +882,7 @@ function mainMove2(realMove, gud2) {
 
         }
         if (realMove == 116 || realMove == 106 || realMove == 126 || realMove == 136) {
-            checkWinner()
+
             if (realMove == 116) {
                 outGreen.splice(0, 1)
             } else if (realMove == 106) {
@@ -881,6 +892,7 @@ function mainMove2(realMove, gud2) {
             } else if (realMove == 136) {
                 outYellow.splice(0, 1)
             }
+            checkWinner()
             $(`[data-place=${realMove}] div`).last().remove()
             stop(move)
             setTimeout(() => {
@@ -900,6 +912,7 @@ let position
 let movedPosition
 
 function moreMove(event) {
+
     gud = event.target.id;
 
     letter = gud.slice(0, 1)
@@ -908,7 +921,6 @@ function moreMove(event) {
     specOutR2()
     specBlueR()
     specYellowR()
-
     if (currentPosition() == 26 || currentPosition() == 39) {
         position = ''
     } else if (currentPosition() == undefined) {
@@ -946,9 +958,84 @@ function moreMove(event) {
 
 }
 function checkWinner() {
-    if ((hose.length == 0 && hoge.length == 0) && (outGreen == 0 && outRed == 0)) {
-        alert('player 1 wins 💥💥🎉🎉🎉😀')
-    } else if ((hobl.length == 0 && hoye.length == 0) && (outYellow == 0 && outBlue == 0)) {
-        alert('player 2 wines💥💥🎉🎉🎉😀')
+    if (player.length == 2) {
+        console.log('almost winning');
+        if ((hose.children.length == 0 && hoge.children.length == 0) && (outGreen == 0 && outRed == 0)) {
+            alert(`${dere1} wins 💥💥🎉🎉🎉😀`)
+            setTimeout(() => {
+                window.location.reload()
+            }, 500);
+        } else if ((hobl.children.length == 0 && hoye.children.length == 0) && (outYellow == 0 && outBlue == 0)) {
+            alert(`${dere1} wines💥💥🎉🎉🎉😀`)
+            setTimeout(() => {
+                window.location.reload()
+            }, 500);
+        }
+    } else if (player.length == 4) {
+        if (hose.children.length == 0 && outRed.length == 0) {
+            alert('player 1 wins 💥💥🎉🎉🎉😀')
+        } else if (hobl.children.length == 0 && outBlue.length == 0) {
+            alert('player 2 wines💥💥🎉🎉🎉😀')
+        } else if (hoge.children.length == 0 && outGreen.length == 0) {
+            alert('player 3  wines💥💥🎉🎉🎉😀')
+        } else if (outYellow.length == 0 && hoye.children.length == 0) {
+            alert('player 4 wines💥💥🎉🎉🎉😀')
+        }
     }
 }
+let len
+function kill(realMove, gud2) {
+    len = $(`[data-place=${realMove}] div`).length
+    if (len >= 1) {
+        for (let i = 0; i < len; i++) {
+            clas = gud2[1];
+            obj = $(`[data-place=${realMove}] div`).attr('class');
+            obj1 = obj.split(' ')
+            if (player.length == 4) {
+                if (clas != obj1[1]) {
+                    killed = $(`[data-place=${realMove}] div`).detach()
+                    setTimeout(() => {
+                        if (obj1[1] == 'red_child') {
+                            killed.attr('id', 'red')
+                            $("#red_house").append(killed)
+                        } else if (obj1[1] == 'yellow_child') {
+                            killed.attr('id', 'yellow')
+                            $("#yellow_house").append(killed)
+                        } else if (obj1[1] == 'blue_child') {
+                            killed.attr('id', 'blue')
+                            $("#blue_house").append(killed);
+                        } else if (obj1[1] == 'green_child') {
+                            killed.attr('id', 'green')
+                            $("#green_house").append(killed);
+                        }
+                    }, 50);
+                }
+            } else if (player.length == 2) {
+                if ((clas == 'red_child' || clas == 'green_child') == (obj1[1] == 'yellow_child' || obj1[1] == 'blue_child')) {
+                    killed = $(`[data-place=${realMove}] div`).detach()
+                    setTimeout(() => {
+                        if (obj1[1] == 'yellow_child') {
+                            killed.attr('id', 'yellow')
+                            $("#yellow_house").append(killed)
+                        } else if (obj1[1] == 'blue_child') {
+                            killed.attr('id', 'blue')
+                            $("#blue_house").append(killed);
+                        }
+                    }, 50);
+                } else if ((clas == 'yellow_child' || clas == 'blue_child') == (obj1[1] == 'red_child' || obj1[1] == 'green_child')) {
+                    killed = $(`[data-place=${realMove}] div`).detach()
+                    setTimeout(() => {
+                        if (obj1[1] == 'red_child') {
+                            killed.attr('id', 'red')
+                            $("#yellow_house").append(killed)
+                        } else if (obj1[1] == 'green_child') {
+                            killed.attr('id', 'green')
+                            $("#blue_house").append(killed);
+                        }
+                    }, 50);
+                }
+            }
+        }
+    }
+}
+let killed
