@@ -1,3 +1,4 @@
+
 *{
     box-sizing:border-box ;
 }
@@ -225,4 +226,29 @@ td{
 .form-control:focus{
     box-shadow:0 0 2px gray !important;
     border-color: grey !important;
+}
+#number{
+    padding: 10px 3px 3px 0px;
+    background-color: white;
+    position: absolute;
+    margin:-25px 0 0 8px ;
+    z-index: 10;
+    height: 55px;
+    /* width: 100px; */
+    display: flex;
+    justify-content: space-around;
+    /* box-shadow: 0 0 3px grey; */
+}
+
+#num1,#num2{
+    box-shadow: 0 0 5px gray inset;
+    margin-left: 4px;
+    height: 45px;
+    width: 45px;
+    /* padding-left: 10px; */
+    color: grey;
+    font-size: 22px;
+}
+.pick{
+    background-color: rgba(14, 14, 14, 0.151);
 }

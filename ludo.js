@@ -1,8 +1,8 @@
+
 let play = 'first';
 let col = ''
-// let aaa = ''
-let player = ['Red', 'Yellow', 'Green', "Blue"];
-// let player = [];
+// let player = ['Green', 'Red', 'Green', 'Red'];
+let player = [];
 let two = document.getElementById('checktwo');
 let four = document.getElementById('checkfour');
 let frg = document.getElementById('checkrg');
@@ -14,14 +14,11 @@ let hose = document.getElementById('red_house');
 let hoge = document.getElementById('green_house');
 let hoye = document.getElementById('yellow_house');
 let hobl = document.getElementById('blue_house');
-// let lgr = 'linear-gradient(to right, rgba(255, 0, 0, 0.644), rgba(4, 170, 4, 0.589))';
-// let lgy = 'linear-gradient(to right,rgba(4, 4, 139, 0.603),rgba(226, 226, 4, 0.616))';
 let a
 let b
 let da = 0
 let db = 0
 let move
-// let rdrop = document.getElementById('rdrop')
 let game = document.getElementById('ludo')
 
 document.getElementById('ludo').style.backgroundColor = 'rgba(0,0,0,0.2)'
@@ -75,10 +72,7 @@ function tomi(l) {
         var ac = l.target.parentElement.children[1].innerText
         document.getElementById('select').style.height = ' 120px'
         $('#nxt').text('  Next')
-        // $('#nxt').css({
-        //     'width': '120px',
-        //     'left': '72%',
-        // })
+
         if (d == '  Next' && col === ac) {
             $("#select").hide()
             $("#playfour").show(500)
@@ -148,12 +142,8 @@ function secondPlay() {
             player.push(sby.parentElement.innerText, frg.parentElement.innerText)
         }
         var aa = $("#nex").text()
-        // $('#nex').css({
-        //     'width': '120px',
-        //     'left': '72%',
-        // })
+
         if (aa == ' Next' && frg.checked == true || aa == ' Next' && sby.checked == true) {
-            // document.getElementById('playtwo').style.display = 'none';
             $("#selectTwo").hide(500)
             $("#playtwo").show(500)
         } else {
@@ -260,9 +250,9 @@ function fourPlayer(dere) {
     }
 }
 
-// setTimeout(() => {
-//     startGame()
-// }, 500);
+setTimeout(() => {
+    startGame()
+}, 500);
 
 function deter(dere) {
     if (dere == 'Red') {
@@ -340,7 +330,6 @@ function img() {
         }
     } else if (player.length == 4) {
         if (hose.children.length == 0 && outRed.length == 0) {
-            console.log('yh');
             startGame()
         } else if (hobl.children.length == 0 && outBlue.length == 0) {
             startGame()
@@ -348,8 +337,6 @@ function img() {
             startGame()
         } else if (hoye.children.length == 0 && outYellow.length == 0) {
             startGame()
-        } else {
-            console.log('help me nah!!!!!');
         }
         $('#place').text(`${fourPlayer(dere)}`);
         $("#place1").html(`: ${dere1}`);
@@ -375,8 +362,8 @@ function rollD() {
 }
 // randiceA() generates the first random number.
 function randiceA() {
-    // return Math.ceil(Math.random() * 6)
-    return 6
+    return Math.ceil(Math.random() * 6)
+    // return 6
 }
 
 // randiceB() generates the second random number.
@@ -392,7 +379,7 @@ function red() {
     var chil = hose.children.length
     var child = hoge.children.length
     if (((a == 6 || b == 6) && (chil == 4 && child == 4)) || ((outGreen > 0 || outRed > 0) && (a == 6 || b == 6))) {
-        add()
+        add0()
         specRed()
         specGreen()
 
@@ -406,7 +393,7 @@ function red() {
                 add2()
                 specOut()
             }
-            add()
+            add0()
             specRed()
             specGreen()
         } else if ((a <= 6 || b <= 6) || (outGreen > 0 || outRed > 0)) {
@@ -457,13 +444,12 @@ function fourplay() {
             adder(d)
             secMove()
             specC(c)
-        } else if ((a <= 6 || b <= 6) || (e > 0)) {
+        } else if ((a < 6 || b < 6) || (e > 0)) {
             secMove()
-            specOut()
+            specCol()
         }
     }
 }
-
 
 function yellow() {
     var chil1 = hoye.children.length
@@ -474,8 +460,7 @@ function yellow() {
         specBlue()
 
     } else if (((chil1 <= 4 || child1 <= 4) && (a < 6 && b < 6)) && (outYellow == 0 && outBlue == 0)) {
-        // alert(`${dere1}: you need a six to leave the house`) 
-
+        alert(`${dere1}: you need a six to leave the house`)
         startGame()
 
     } else if (chil1 < 4 || child1 < 4) {
@@ -514,7 +499,7 @@ function specRedR() {
         ree[i].classList.remove('spec')
     }
 }
-
+// removes class name (spec) form the seeds inside of house green
 function specGreenR() {
     let geen = document.getElementsByClassName('green_child')
     for (let i = 0; i < geen.length; i++) {
@@ -528,37 +513,53 @@ function specOut() {
         ree[i].classList.add('spec')
     }
 }
-function secMove() {
-    let ree = document.getElementsByClassName(c)
-    for (let i = 0; i < ree.length; i++) {
-        ree[i].addEventListener('click', movement)
-    }
-}
-function secMoveR() {
-    let ree = document.getElementsByClassName(c)
-    for (let i = 0; i < ree.length; i++) {
-        ree[i].removeEventListener('click', movement)
-    }
-}
-
-function specOutR() {
-    let ree = document.getElementsByClassName('sing')
-    for (let i = 0; i < ree.length; i++) {
-        ree[i].classList.remove('spec')
-    }
-}
-
+// adds class name the moveble seed of house yellow and blue that are out of the house
 function specOut2() {
     let ree = document.getElementsByClassName('deal')
     for (let i = 0; i < ree.length; i++) {
         ree[i].classList.add('spec')
     }
 }
-
+// removes class name the moveble seed of house red and green that are out of the house
+function specOutR() {
+    let ree = document.getElementsByClassName('sing')
+    for (let i = 0; i < ree.length; i++) {
+        ree[i].classList.remove('spec')
+    }
+}
+// removes class name the moveble seed of house yellow and blue that are out of the house
 function specOutR2() {
     let ree = document.getElementsByClassName('deal')
     for (let i = 0; i < ree.length; i++) {
         ree[i].classList.remove('spec')
+    }
+}
+// event
+function secMove() {
+    let ree = document.getElementsByClassName(c)
+    for (let i = 0; i < ree.length; i++) {
+        ree[i].addEventListener('click', movement)
+    }
+}
+// event
+function secMoveR() {
+    let ree = document.getElementsByClassName(c)
+    for (let i = 0; i < ree.length; i++) {
+        ree[i].removeEventListener('click', movement)
+    }
+}
+// event
+function specCol() {
+    let ree = document.getElementsByClassName(c)
+    for (let i = 0; i < ree.length; i++) {
+        ree[i].classList.add('spec')
+    }
+}
+// event
+function specColR() {
+    let ree = document.getElementsByClassName(c)
+    for (let i = 0; i < ree.length; i++) {
+        ree[i].classList.remove(c)
     }
 }
 // adds class name the moveble seed of house yellow
@@ -568,7 +569,7 @@ function specYellow() {
         yell[i].classList.add('spec')
     }
 }
-// remove class name from all seeds of house yellow 
+// removes class name from all seeds of house yellow 
 function specYellowR() {
     let yell = document.getElementsByClassName('yellow_child')
     for (let i = 0; i < yell.length; i++) {
@@ -582,15 +583,15 @@ function specBlue() {
         bue[i].classList.add('spec')
     }
 }
-
+// removes class name from all seeds of house blue
 function specBlueR() {
     let bue = document.getElementsByClassName('blue_child')
     for (let i = 0; i < bue.length; i++) {
         bue[i].classList.remove('spec')
     }
 }
-// add() adds eventlistener to the all of seeds of green and red that are in the house 
-function add() {
+// add0() adds eventlistener to the all of seeds of green and red that are in the house 
+function add0() {
     let chil = hose.children
     let child = hoge.children
     for (let s = 0; s < chil.length; s++) {
@@ -625,7 +626,7 @@ function add4() {
         chil1[s].addEventListener('click', moreMove)
     }
 }
-
+// adds eventlistener from the all of seeds of the current player
 function adder(de) {
     for (let s = 0; s < de.length; s++) {
         de[s].addEventListener('click', movement);
@@ -649,10 +650,12 @@ function reMove2() {
     let child1 = hoye.children;
     for (let s = 0; s < chil1.length; s++) {
         chil1[s].removeEventListener('click', moreMove)
+        console.log('yell ');
     }
-
     for (let j = 0; j < child1.length; j++) {
         child1[j].removeEventListener('click', moreMove)
+        console.log(' blue');
+
     }
 }
 // reMove() removes eventlistener from the all of seeds of green and red.
@@ -661,10 +664,12 @@ function reMove() {
     let child = hoge.children
     for (let s = 0; s < chil.length; s++) {
         hov = chil[s].removeEventListener('click', movement)
+        console.log('red');
     }
 
     for (let j = 0; j < child.length; j++) {
         hove = child[j].removeEventListener('click', movement)
+        console.log('gree');
     }
 }
 let gud
@@ -695,17 +700,23 @@ function firstMove(position) {
 }
 
 let realMove
-
+let killer
 function movement(event) {
+//    killer = event
+    event.target.classList.remove()
+    console.log(event.target.classList);
+
     gud = event.target.id;
 
     letter = gud.slice(0, 1)
     gud1 = event.target.classList;
     if (player.length == 2) {
+
         reMove()
         specRedR()
         specOutR()
         specGreenR()
+        secMoveR()
         if (currentPosition() == 0 || currentPosition() == 13) {
             position = ''
         } else if (currentPosition() == undefined) {
@@ -720,17 +731,12 @@ function movement(event) {
         specOutR2()
         specR(d)
 
-        if (currentPosition() == 0) {
-            position = ''
-        } else if (currentPosition() == 13) {
-            position = ''
-        } else if (currentPosition() == 26) {
-            position = ''
-        } else if (currentPosition() == 39) {
+        if (currentPosition() == 0 || currentPosition() == 13 || currentPosition() == 26 || currentPosition() == 39) {
             position = ''
         } else if (currentPosition() == undefined) {
             position = event.target.parentElement.dataset.place
         }
+
     }
 
     if (letter == 'r') {
@@ -758,7 +764,7 @@ function movement(event) {
         realMove = firstMove(position)
 
         gud2 = event.target.classList;
-        outGreen.push(event.target.id)
+        outYellow.push(event.target.id)
 
         if (realMove == 39) {
             mainMove(realMove, gud2)
@@ -768,7 +774,7 @@ function movement(event) {
         realMove = firstMove(position)
 
         gud2 = event.target.classList;
-        outGreen.push(event.target.id)
+        outBlue.push(event.target.id)
 
         if (realMove == 26) {
             mainMove(realMove, gud2)
@@ -781,12 +787,34 @@ function movement(event) {
 
 
 }
-
+let dis
 function stop(move) {
     clearInterval(move)
-    setTimeout(() => {
-        startGame()
-    }, 1000);
+    if (player.length == 4) {
+        dis = $("#number").html()
+        console.log(dis);
+        if (dis == undefined || dis == '') {
+            setTimeout(() => {
+                startGame()
+            }, 500);
+        } else {
+            console.log(a);
+            console.log(b);
+            console.log(e);
+            if (a == 6 || b == 6) {
+                secMove()
+                specC(c)
+            } else if ((a < 6 || b < 6) || (e > 0)) {
+                secMove()
+                specCol()
+            }
+        }
+    } else if (player.length == 2) {
+        setTimeout(() => {
+            startGame()
+        }, 500);
+    }
+
 }
 
 function mainMove(realMove, gud2) {
@@ -799,18 +827,20 @@ function mainMove(realMove, gud2) {
     } else if (gud2[1] == 'green_child') {
         seed = `<div class="${gud2} sing Green" style = "position: absolute; " ></div>`;
     }
-    $(`[data-place=${realMove}]`).append(seed)
     kill(realMove, gud2)
+    $(`[data-place=${realMove}]`).append(seed)
     bb = b + realMove
     aa = a + realMove
     var move = setInterval(() => {
-        main = $(`[data-place=${realMove}] div`).last().detach()
-        realMove++
-        kill(realMove, gud2)
+        main = $(`[data-place=${realMove}] div`).last().detach();
+        main1 = $(`[data-place=${realMove}] div`).add('span','hey');
+        realMove++;
+        console.log(main1);
+        console.log(seed);
 
-        $(`[data-place=${realMove}]`).append(seed)
+        kill(realMove, gud2,main);
+        $(`[data-place=${realMove}]`).append(seed);
         if (a == 6) {
-
             if (realMove == bb) {
                 stop(move)
             }
@@ -833,13 +863,13 @@ function mainMove(realMove, gud2) {
                 stop(move)
             }
         }
-
     }, 500);
 
 
 }
-
+let tem
 function mainMove2(realMove, gud2) {
+
     realMove = parseInt(realMove)
     a = parseInt(a)
     b = parseInt(b);
@@ -854,17 +884,37 @@ function mainMove2(realMove, gud2) {
     } else if (gud2[1] == 'green_child') {
         seed = `<div class="${gud2} sing Green" style = "position: absolute; " ></div>`;
     }
-    // bb = (b + a) + realMove + da + db
-    bb = (b + a) + 48 + da + db
 
+    if (e > 1 && $("#number").html() == '') {
+        $("#number").append(`<button class="btn"  id='num1'>${a}</button>`)
+        $("#number").append(`<button class="btn" id='num2'>${b}</button>`)
+    } else if ($("#number").html() == '') {
+        bb = (b + a) + realMove + da + db
+        num(realMove, gud2, bb)
+    }
+    $("#num1").click(function () {
+        tem = parseInt($(this).html())
+        $(this).addClass('pick')
+        $(this).detach()
+        bb = tem + realMove
+        num(realMove, gud2, bb)
+    })
+    $("#num2").click(function () {
+        tem = parseInt($(this).html())
+        $(this).addClass('pick')
+        $(this).detach()
+        bb = tem + realMove
+        num(realMove, gud2, bb)
+    })
+}
+function num(realMove, gud2, bb) {
     var move = setInterval(() => {
-        main = $(`[data-place=${realMove}] div`).last().remove()
+        main = $(`[data-place=${realMove}] div`).last().detach()
+    //  main1 =$(`[data-place=${realMove}] div`).add('div','hey')
         if (realMove >= 51 && realMove < 100) {
             bb = bb - 52
             realMove = -1
         }
-        // checkWinner()
-
         realMove++
         kill(realMove, gud2)
         if (gud2[1] == 'red_child' && realMove == 51) {
@@ -881,6 +931,7 @@ function mainMove2(realMove, gud2) {
             bb = (bb - 24) + realMove
 
         }
+
         if (realMove == 116 || realMove == 106 || realMove == 126 || realMove == 136) {
 
             if (realMove == 116) {
@@ -892,15 +943,13 @@ function mainMove2(realMove, gud2) {
             } else if (realMove == 136) {
                 outYellow.splice(0, 1)
             }
+            $(`[data-place=${realMove}] div`).last().detach()
             checkWinner()
-            $(`[data-place=${realMove}] div`).last().remove()
             stop(move)
-            setTimeout(() => {
-                startGame()
-            }, 1000);
-        }
-        $(`[data-place=${realMove}]`).append(seed)
 
+        }
+
+        $(`[data-place=${realMove}]`).append(main)
         if (realMove == bb) {
             stop(move)
         }
@@ -921,6 +970,7 @@ function moreMove(event) {
     specOutR2()
     specBlueR()
     specYellowR()
+    secMoveR()
     if (currentPosition() == 26 || currentPosition() == 39) {
         position = ''
     } else if (currentPosition() == undefined) {
@@ -959,7 +1009,6 @@ function moreMove(event) {
 }
 function checkWinner() {
     if (player.length == 2) {
-        console.log('almost winning');
         if ((hose.children.length == 0 && hoge.children.length == 0) && (outGreen == 0 && outRed == 0)) {
             alert(`${dere1} wins 💥💥🎉🎉🎉😀`)
             setTimeout(() => {
@@ -986,6 +1035,8 @@ function checkWinner() {
 let len
 function kill(realMove, gud2) {
     len = $(`[data-place=${realMove}] div`).length
+    console.log(killer);
+    killer.target.display = 'none'
     if (len >= 1) {
         for (let i = 0; i < len; i++) {
             clas = gud2[1];
@@ -993,19 +1044,26 @@ function kill(realMove, gud2) {
             obj1 = obj.split(' ')
             if (player.length == 4) {
                 if (clas != obj1[1]) {
-                    killed = $(`[data-place=${realMove}] div`).detach()
+                    console.log('gonna be killed');
+                    killed = $(`[data-place=${realMove}] div`).detach();
+                    console.log(killed);
                     setTimeout(() => {
+                        specColR()
                         if (obj1[1] == 'red_child') {
                             killed.attr('id', 'red')
+                            outRed.splice(0, 1)
                             $("#red_house").append(killed)
                         } else if (obj1[1] == 'yellow_child') {
                             killed.attr('id', 'yellow')
+                            outYellow.splice(0, 1)
                             $("#yellow_house").append(killed)
                         } else if (obj1[1] == 'blue_child') {
                             killed.attr('id', 'blue')
+                            outBlue.splice(0, 1)
                             $("#blue_house").append(killed);
                         } else if (obj1[1] == 'green_child') {
-                            killed.attr('id', 'green')
+                            killed.attr('id', 'green');
+                            outGreen.splice(0, 1)
                             $("#green_house").append(killed);
                         }
                     }, 50);
@@ -1014,6 +1072,7 @@ function kill(realMove, gud2) {
                 if ((clas == 'red_child' || clas == 'green_child') == (obj1[1] == 'yellow_child' || obj1[1] == 'blue_child')) {
                     killed = $(`[data-place=${realMove}] div`).detach()
                     setTimeout(() => {
+                        specColR()
                         if (obj1[1] == 'yellow_child') {
                             killed.attr('id', 'yellow')
                             $("#yellow_house").append(killed)
@@ -1038,4 +1097,5 @@ function kill(realMove, gud2) {
         }
     }
 }
+
 let killed
